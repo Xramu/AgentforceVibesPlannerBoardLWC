@@ -69,6 +69,99 @@
             "Estimated_Cost__c": "2000",
             "Completion_Date__c": "2026-05-22",
             "Assigned_Project__c": "@project_bus"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_008"},
+            "Name": "B-08 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "1500",
+            "Completion_Date__c": "2027-05-05",
+            "Assigned_Project__c": "@project_bus"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_009"},
+            "Name": "B-09 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "4000",
+            "Completion_Date__c": "2027-03-22",
+            "Assigned_Project__c": "@project_bus"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_010"},
+            "Name": "B-10 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "1500",
+            "Completion_Date__c": "2027-01-27",
+            "Assigned_Project__c": "@project_bus"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_011"},
+            "Name": "B-11 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "2500",
+            "Completion_Date__c": "2027-01-27",
+            "Assigned_Project__c": "@project_bus"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_012"},
+            "Name": "B-12 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Other",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "5000",
+            "Completion_Date__c": "2027-08-12",
+            "Assigned_Project__c": "@project_bus"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_013"},
+            "Name": "B-01 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "3000",
+            "Completion_Date__c": "2025-03-25",
+            "Assigned_Project__c": "@project_bus"
+        }
+        ,
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_014"},
+            "Name": "B-03 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "7000",
+            "Completion_Date__c": "2025-10-15",
+            "Assigned_Project__c": "@project_bus"
+        }
+        ,
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_015"},
+            "Name": "B-05 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Other",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "6000",
+            "Completion_Date__c": "2025-02-12",
+            "Assigned_Project__c": "@project_bus"
+        }
+        ,
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_016"},
+            "Name": "B-07 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the bus.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "2500",
+            "Completion_Date__c": "2025-07-09",
+            "Assigned_Project__c": "@project_bus"
         }
     ]
 }
