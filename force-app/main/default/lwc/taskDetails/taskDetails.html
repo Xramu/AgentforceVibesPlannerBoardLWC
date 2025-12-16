@@ -1,23 +1,11 @@
 <template>
     <section class="slds-card task-details">
         <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-horizontal_small slds-p-vertical_x-small">
-            <h2 class="slds-card__header-title slds-text-title_caps">Task Details</h2>
+            <h2 class="slds-card__header-title slds-text-title_caps">Maintenance Details</h2>
         </div>
 
         <div class="slds-card__body slds-p-around_x-small">
             <template if:true={task}>
-                <!-- Save Button -->
-                <div class="slds-m-bottom_small">
-                    <button
-                        type="button"
-                        class="custom-save-button"
-                        onclick={handleSave}
-                        disabled={isSaving}
-                    >
-                        {saveButtonLabel}
-                    </button>
-                </div>
-
                 <!-- Task Handler Buttons -->
                 <div class="slds-m-bottom_small">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Task Handler</div>
@@ -36,14 +24,6 @@
                         </template>
                     </div>
                 </div>
-
-                <!-- Name -->
-                <lightning-input
-                    label="Task Name"
-                    value={task.name}
-                    onchange={handleChangeName}
-                    class="slds-m-bottom_small"
-                ></lightning-input>
 
                 <!-- Completion Date -->
                 <lightning-datepicker
@@ -77,6 +57,14 @@
                     </div>
                 </div>
 
+                <!-- Name -->
+                <lightning-input
+                    label="Task Name"
+                    value={task.name}
+                    onchange={handleChangeName}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+
                 <!-- Description (Rich Text) -->
                 <lightning-input-rich-text
                     label="Task Description"
@@ -85,6 +73,18 @@
                     onchange={handleChangeDescription}
                     class="slds-m-bottom_small"
                 ></lightning-input-rich-text>
+
+                <!-- Save Button -->
+                <div class="slds-m-bottom_small">
+                    <button
+                        type="button"
+                        class="custom-save-button"
+                        onclick={handleSave}
+                        disabled={isSaving}
+                    >
+                        {saveButtonLabel}
+                    </button>
+                </div>
 
                 <!-- Task Status Buttons -->
                 <!-- <div class="slds-m-bottom_small">
