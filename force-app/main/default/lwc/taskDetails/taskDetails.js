@@ -101,7 +101,9 @@ export default class TaskDetails extends LightningElement {
     }
 
     // Override to update variants when task changes externally
-    updated() {
-        this.updateButtonVariants();
+    updated(changedProperties) {
+        if (changedProperties.has('task')) {
+            this.updateButtonVariants();
+        }
     }
 }

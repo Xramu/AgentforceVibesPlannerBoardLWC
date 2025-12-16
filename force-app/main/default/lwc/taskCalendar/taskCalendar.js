@@ -60,7 +60,7 @@ export default class TaskCalendar extends LightningElement {
     }
 
     relaySelect(event) {
-        console.log("Relayed from Calendar!");
+        // Simply relay the event from week cells or task cards
         event.stopPropagation();
         const detail = event.detail || {};
         this.dispatchEvent(

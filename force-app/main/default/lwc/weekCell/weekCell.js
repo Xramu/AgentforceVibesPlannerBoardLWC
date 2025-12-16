@@ -31,13 +31,16 @@ export default class WeekCell extends LightningElement {
         );
     }
 
-    handleSelect() {
-        console.log("Select Fired!");
-        // Select this week's tasks (or just the week?)
-        // For now, we'll just bubble the click to the calendar
-        // If we want to select a specific task within the week, we'd need to adjust
-        // For now, clicking a week is a no-op unless we want to select the week itself
-        // Let's just bubble the click to the calendar for consistency with task selection
+    handleSelect(event) {
+        // When a task card inside this week is clicked, we want to bubble that task's ID
+        // The task card should already have bubbled its task ID, but if we're clicking on the week itself,
+        // we can just bubble the week number for context (though this is less common)
+        // For now, let's just bubble the week number for consistency with current behavior
+        // The real issue is that when a task card is clicked, the event should bubble up with task ID
+        // The task card component should be handling this properly
+        
+        // Since we don't have direct access to the task here, we'll bubble the week number
+        // but the actual task selection should happen at the taskCard level
         this.dispatchEvent(
             new CustomEvent('taskselect', {
                 detail: { weekNumber: this.number },
