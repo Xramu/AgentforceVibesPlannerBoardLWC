@@ -4,29 +4,32 @@ import { LightningElement, api } from 'lwc';
 export default class TaskPool extends LightningElement {
     @api tasks = [];
 
-    get notStarted() {
-        return this.byStatus('Not Started');
+    // Grouping by handler, ordered sections: Other, Internal, Customer
+    get otherTasks() {
+        return this.byHandler('Other');
     }
-    get onTrack() {
-        return this.byStatus('On Track');
+    get internalTasks() {
+        return this.byHandler('Internal');
     }
-    get late() {
-        return this.byStatus('Late');
-    }
-    get onHold() {
-        return this.byStatus('On Hold');
-    }
-    get completed() {
-        return this.byStatus('Completed');
-    }
-    get closedNotCompleted() {
-        return this.byStatus('Closed, not Completed');
+    get customerTasks() {
+        return this.byHandler('Customer');
     }
 
-    byStatus(status) {
+    // Section titles mapping (Other -> "None", Internal -> "OEM", Customer -> "Customer")
+    get otherTitle() {
+        return 'None';
+    }
+    get internalTitle() {
+        return 'OEM';
+    }
+    get customerTitle() {
+        return 'Customer';
+    }
+
+    byHandler(handler) {
         const items = Array.isArray(this.tasks) ? this.tasks : [];
-        // Case insensitive matching and trim to handle potential whitespace issues
-        return items.filter((t) => t.taskStatus && t.taskStatus.trim() === status);
+        const key = handler;
+        return items.filter((t) => t.taskHandler && t.taskHandler.trim() === key);
     }
 
     // Relay child events upward so container can manage state

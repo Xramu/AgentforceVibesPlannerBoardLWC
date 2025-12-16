@@ -5,11 +5,11 @@
         </div>
         <div class="slds-card__body slds-p-around_x-small">
             <div class="task-pool-content">
-                <!-- Not Started -->
-                <div class="status-group not-started">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Not Started</div>
-                    <div class="status-tasks">
-                        <template for:each={notStarted} for:item="t">
+                <!-- Other (display title "None") -->
+                <div class="handler-group handler-other">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">{otherTitle}</div>
+                    <div class="handler-tasks">
+                        <template for:each={otherTasks} for:item="t">
                             <c-task-card
                                 key={t.id}
                                 id={t.id}
@@ -20,17 +20,17 @@
                                 ontaskselect={relaySelect}
                             ></c-task-card>
                         </template>
-                        <template if:false={notStarted.length}>
+                        <template if:false={otherTasks.length}>
                             <div class="slds-text-body_small slds-text-color_weak slds-m-around_small">No tasks</div>
                         </template>
                     </div>
                 </div>
-                
-                <!-- On Track -->
-                <div class="status-group on-track">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">On Track</div>
-                    <div class="status-tasks">
-                        <template for:each={onTrack} for:item="t">
+
+                <!-- Internal (display title "OEM") -->
+                <div class="handler-group handler-internal">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">{internalTitle}</div>
+                    <div class="handler-tasks">
+                        <template for:each={internalTasks} for:item="t">
                             <c-task-card
                                 key={t.id}
                                 id={t.id}
@@ -41,17 +41,17 @@
                                 ontaskselect={relaySelect}
                             ></c-task-card>
                         </template>
-                        <template if:false={onTrack.length}>
+                        <template if:false={internalTasks.length}>
                             <div class="slds-text-body_small slds-text-color_weak slds-m-around_small">No tasks</div>
                         </template>
                     </div>
                 </div>
-                
-                <!-- Late -->
-                <div class="status-group late">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Late</div>
-                    <div class="status-tasks">
-                        <template for:each={late} for:item="t">
+
+                <!-- Customer -->
+                <div class="handler-group handler-customer">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">{customerTitle}</div>
+                    <div class="handler-tasks">
+                        <template for:each={customerTasks} for:item="t">
                             <c-task-card
                                 key={t.id}
                                 id={t.id}
@@ -62,70 +62,7 @@
                                 ontaskselect={relaySelect}
                             ></c-task-card>
                         </template>
-                        <template if:false={late.length}>
-                            <div class="slds-text-body_small slds-text-color_weak slds-m-around_small">No tasks</div>
-                        </template>
-                    </div>
-                </div>
-                
-                <!-- On Hold -->
-                <div class="status-group on-hold">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">On Hold</div>
-                    <div class="status-tasks">
-                        <template for:each={onHold} for:item="t">
-                            <c-task-card
-                                key={t.id}
-                                id={t.id}
-                                name={t.name}
-                                task-handler={t.taskHandler}
-                                task-status={t.taskStatus}
-                                ontaskdragstart={relayDragStart}
-                                ontaskselect={relaySelect}
-                            ></c-task-card>
-                        </template>
-                        <template if:false={onHold.length}>
-                            <div class="slds-text-body_small slds-text-color_weak slds-m-around_small">No tasks</div>
-                        </template>
-                    </div>
-                </div>
-                
-                <!-- Completed -->
-                <div class="status-group completed">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Completed</div>
-                    <div class="status-tasks">
-                        <template for:each={completed} for:item="t">
-                            <c-task-card
-                                key={t.id}
-                                id={t.id}
-                                name={t.name}
-                                task-handler={t.taskHandler}
-                                task-status={t.taskStatus}
-                                ontaskdragstart={relayDragStart}
-                                ontaskselect={relaySelect}
-                            ></c-task-card>
-                        </template>
-                        <template if:false={completed.length}>
-                            <div class="slds-text-body_small slds-text-color_weak slds-m-around_small">No tasks</div>
-                        </template>
-                    </div>
-                </div>
-                
-                <!-- Closed, not Completed -->
-                <div class="status-group closed-not-completed">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Closed, not Completed</div>
-                    <div class="status-tasks">
-                        <template for:each={closedNotCompleted} for:item="t">
-                            <c-task-card
-                                key={t.id}
-                                id={t.id}
-                                name={t.name}
-                                task-handler={t.taskHandler}
-                                task-status={t.taskStatus}
-                                ontaskdragstart={relayDragStart}
-                                ontaskselect={relaySelect}
-                            ></c-task-card>
-                        </template>
-                        <template if:false={closedNotCompleted.length}>
+                        <template if:false={customerTasks.length}>
                             <div class="slds-text-body_small slds-text-color_weak slds-m-around_small">No tasks</div>
                         </template>
                     </div>
