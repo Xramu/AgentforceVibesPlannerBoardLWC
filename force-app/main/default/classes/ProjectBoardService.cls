@@ -273,7 +273,7 @@ public with sharing class ProjectBoardService {
 
         Project_Task__c refreshed = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Id = :taskId
             LIMIT 1
