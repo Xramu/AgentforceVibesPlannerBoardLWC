@@ -45,8 +45,6 @@ Color the task box based on its handler value by following the specified related
 
 Create each window in a modular way, creating their own component for each window. When communicating between the components, use Salesforce standards and best practices. Share common functionality like Apex classes for fetching data and reuse code where ever possible and acceptable to keep it readable.
 
-NEVER use window.prompt for taking input from the user.
-
 Task Pool Window:
 Located on the left side of the project management board component, a window for showing all the tasks records.
 Each task is sorted into a column inside the Task Pool window based on their Task Status value.
@@ -77,7 +75,7 @@ Every time the year shown is changed, update the calendar boxes to show only tha
 Task Details Window:
 Located on the right side of the project management board component, a window showing all the details of the currently selected Task Item.
 
-The details window should these fields in this order inside it:
+The details window should have these fields in this order inside it:
 - Task Name
 - Task Description
 - Task Completion Date
@@ -92,6 +90,11 @@ The row of buttons has a button for each possible value of the picklist field.
 The picklist item currently assigned to the task's field is highlighted in the button row.
 Clicking another button on the button row changes the task's picked value to that.
 Color the row of buttons for the Task Handler and the Task Status based on their related colors
+
+At the bottom of the Task Details Window should be two buttons:
+- Button on the left labeled `Move Back` to move the currently selected task's completion date to be one week earlier.
+- Button on the right labeled `Move Forward` to move the currently selected task's completion date to be one week later.
+Update the Task Calendar Window to show the correct placement of the Task box placed in the new date's week.
 
 If no task is selected, the Task Details Window will be empty.
 Any changes done inside the Task Details Window will be saved to the Task object's record that is being shown.
@@ -108,3 +111,4 @@ The project management board component should feel responsive by shwoing changes
 - Do not create any new custom objects into the org, use the specified existing objects.
 - Do not include any complex logic inside the HTML files, move it to the JavaScript files.
 - Do not deploy the project to the org automatically, a human will deploy it manually.
+- NEVER use window.prompt for taking input from the user.
