@@ -52,3 +52,28 @@
 .closed-not-completed .status-tasks {
     border-top-color: #ffb75d; /* Yellow */
 }
+
+/* Handler divider styles */
+.handler-divider {
+    border: 0;
+    height: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Handler-specific divider colors */
+.handler-undated-divider {
+    background-color: #9e9e9e; /* Gray */
+}
+
+.handler-other-divider {
+    background-color: #9e9e9e; /* Gray */
+}
+
+.handler-internal-divider {
+    background-color: #0176d3; /* Blue */
+}
+
+.handler-customer-divider {
+    background-color: #ffb75d; /* Yellow */
+}

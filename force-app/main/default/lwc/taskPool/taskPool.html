@@ -8,6 +8,7 @@
                 <!-- Undated tasks -->
                 <div class="handler-group handler-undated">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Maintenance Date Not Set</div>
+                    <hr class="handler-divider handler-undated-divider"/>
                     <div class="handler-tasks">
                         <template for:each={undatedTasks} for:item="t">
                             <c-task-card
@@ -30,6 +31,7 @@
                 <!-- Other (display title "None") -->
                 <div class="handler-group handler-other">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">{otherTitle}</div>
+                    <hr class="handler-divider handler-other-divider"/>
                     <div class="handler-tasks">
                         <template for:each={otherTasks} for:item="t">
                             <c-task-card
@@ -52,6 +54,7 @@
                 <!-- Internal (display title "OEM") -->
                 <div class="handler-group handler-internal">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">{internalTitle}</div>
+                    <hr class="handler-divider handler-internal-divider"/>
                     <div class="handler-tasks">
                         <template for:each={internalTasks} for:item="t">
                             <c-task-card
@@ -74,6 +77,7 @@
                 <!-- Customer -->
                 <div class="handler-group handler-customer">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">{customerTitle}</div>
+                    <hr class="handler-divider handler-customer-divider"/>
                     <div class="handler-tasks">
                         <template for:each={customerTasks} for:item="t">
                             <c-task-card
