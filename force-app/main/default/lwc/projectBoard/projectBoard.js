@@ -27,7 +27,7 @@ export default class ProjectBoard extends LightningElement {
     }
 
     updateCurrentWeek() {
-        this.currentWeek = this.computeIsoWeek(new Date());
+        this.currentWeek = this.computeSundayBasedWeek(new Date());
     }
 
     // Wire fetch for tasks for selected year
@@ -207,21 +207,21 @@ export default class ProjectBoard extends LightningElement {
     }
 
     applyTaskMoveToWeek(taskId, weekNumber) {
-        // Remove from allTasks and add to dated with synthetic date string of Monday (visual placeholder)
+        // Remove from allTasks and add to dated with synthetic date string of Sunday (visual placeholder)
         const task = this.allTasks.find((t) => t.id === taskId);
         if (!task) return;
         this.allTasks = this.allTasks.filter((t) => t.id !== taskId);
-        const monday = this.isoWeekMondayDate(this.selectedYear, weekNumber);
-        const newTask = { ...task, completionDate: this.toDateString(monday), week: weekNumber };
+        const sunday = this.isoWeekSundayDate(this.selectedYear, weekNumber);
+        const newTask = { ...task, completionDate: this.toDateString(sunday), week: weekNumber };
         this.allTasks = [...this.allTasks, newTask];
     }
 
     applyTaskReweek(taskId, dateString, newWeek) {
         const task = this.allTasks.find((t) => t.id === taskId);
         if (!task) return;
-        // Replace with new week and placeholder date on Monday; server will finalize
-        const monday = this.isoWeekMondayDate(this.selectedYear, newWeek);
-        const updated = { ...task, completionDate: this.toDateString(monday), week: newWeek };
+        // Replace with new week and placeholder date on Sunday; server will finalize
+        const sunday = this.isoWeekSundayDate(this.selectedYear, newWeek);
+        const updated = { ...task, completionDate: this.toDateString(sunday), week: newWeek };
         this.allTasks = [...this.allTasks.filter((t) => t.id !== taskId), updated];
         if (this.selectedTask && this.selectedTask.id === taskId) {
             this.selectedTask = updated;
@@ -233,7 +233,7 @@ export default class ProjectBoard extends LightningElement {
         if (!inDated) return;
         const date = this.fromDateString(inDated.completionDate);
         const shifted = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7 * weeks);
-        const newWeek = this.computeIsoWeek(shifted);
+        const newWeek = this.computeSundayBasedWeek(shifted);
         const updated = { ...inDated, completionDate: this.toDateString(shifted), week: newWeek };
         this.allTasks = [...this.allTasks.filter((t) => t.id !== taskId), updated];
         if (this.selectedTask && this.selectedTask.id === taskId) {
@@ -245,7 +245,7 @@ export default class ProjectBoard extends LightningElement {
     getWeekFromDateString(dateStr) {
         if (!dateStr) return null;
         const d = this.fromDateString(dateStr);
-        return this.computeIsoWeek(d);
+        return this.computeSundayBasedWeek(d);
     }
 
     toDateString(d) {
@@ -261,29 +261,29 @@ export default class ProjectBoard extends LightningElement {
         return new Date(y, m - 1, d);
     }
 
-    isoWeekMondayDate(year, weekNumber) {
-        // Monday of ISO week1 = Monday of week containing Jan 4th
+    isoWeekSundayDate(year, weekNumber) {
+        // Sunday of week1 = Sunday of week containing Jan 4th
         const jan4 = new Date(year, 0, 4);
-        const week1Monday = this.startOfWeekMonday(jan4);
-        const monday = new Date(week1Monday.getFullYear(), week1Monday.getMonth(), week1Monday.getDate() + (weekNumber - 1) * 7);
-        return monday;
+        const week1Sunday = this.startOfWeekSunday(jan4);
+        const sunday = new Date(week1Sunday.getFullYear(), week1Sunday.getMonth(), week1Sunday.getDate() + (weekNumber - 1) * 7);
+        return sunday;
     }
 
-    startOfWeekMonday(d) {
+    startOfWeekSunday(d) {
         const day = d.getDay(); // 0=Sun..6=Sat
-        // compute Monday offset
-        const diff = (day === 0 ? -6 : 1 - day);
+        // compute Sunday offset
+        const diff = (day === 0 ? 0 : 7 - day);
         return new Date(d.getFullYear(), d.getMonth(), d.getDate() + diff);
     }
 
-    computeIsoWeek(d) {
-        // ISO: week starts Monday; week 1 is week containing Jan 4
+    computeSundayBasedWeek(d) {
+        // Week starts Sunday; week 1 is week containing Jan 4th
         const target = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        // Set to nearest Thursday: current date + 4 - current day number (Monday=1, Sunday=7)
-        const dayNr = (target.getUTCDay() + 6) % 7; // 0..6 Mon..Sun
+        // Set to nearest Thursday: current date + 4 - current day number (Sunday=0, Saturday=6)
+        const dayNr = target.getUTCDay(); // 0..6 Sun..Sat
         target.setUTCDate(target.getUTCDate() - dayNr + 3);
         const firstThursday = new Date(Date.UTC(target.getUTCFullYear(), 0, 4));
-        const firstThursdayDayNr = (firstThursday.getUTCDay() + 6) % 7;
+        const firstThursdayDayNr = firstThursday.getUTCDay();
         firstThursday.setUTCDate(firstThursday.getUTCDate() - firstThursdayDayNr + 3);
         // Week number is number of weeks between the two Thursdays
         const weekNo = 1 + Math.round((target - firstThursday) / (7 * 24 * 3600 * 1000));
