@@ -38,7 +38,7 @@
                             <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
                                 <button
                                     type="button"
-                                    class="custom-button {option.class}"
+                                    class={option.class}
                                     onclick={handleHandlerChange}
                                     data-value={option.value}
                                 >
@@ -57,7 +57,7 @@
                             <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
                                 <button
                                     type="button"
-                                    class="custom-button {option.class}"
+                                    class={option.class}
                                     onclick={handleStatusChange}
                                     data-value={option.value}
                                 >

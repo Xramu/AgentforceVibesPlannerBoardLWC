@@ -25,8 +25,9 @@ export default class TaskDetails extends LightningElement {
 
     updateButtonVariants() {
         console.log("Updating button variants.");
-        console.log(this.task);
+        console.log("Task:", this.task);
         if (!this.task) return;
+        
         // Highlight selected handler
         this.handlerOptions = this.handlerOptions.map((opt) => {
             const isSelected = opt.value === this.task.taskHandler;
@@ -45,6 +46,8 @@ export default class TaskDetails extends LightningElement {
             if (isSelected) {
                 className += ' slds-button_brand';
             }
+
+            console.log(className);
             
             return {
                 ...opt,
@@ -144,15 +147,27 @@ export default class TaskDetails extends LightningElement {
 
     // Override to update variants when task changes externally
     updated(changedProperties) {
-        console.log("Update!");
+        console.log("Updated called with properties:", Array.from(changedProperties.keys()));
         if (changedProperties.has('task')) {
+            console.log("Task property changed, updating button variants");
             this.updateButtonVariants();
         }
     }
 
     // Ensure task details are updated when task property changes
     rendered() {
-        // This will be called after every render, but we only want to update button variants
-        // when the task actually changes, which is handled by the updated() method
+        // Force update button variants when component is rendered
+        // This acts as a fallback mechanism
+        console.log("Rendered - checking if we need to update button variants");
+        if (this.task) {
+            this.updateButtonVariants();
+        }
+    }
+    
+    // Expose a method to manually trigger button variant updates
+    // This can be called from parent components when needed
+    @api refreshButtonVariants() {
+        console.log("Manually refreshing button variants");
+        this.updateButtonVariants();
     }
 }

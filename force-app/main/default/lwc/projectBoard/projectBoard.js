@@ -123,6 +123,12 @@ export default class ProjectBoard extends LightningElement {
         if (taskId) {
             const foundTask = this.findTaskById(taskId);
             this.selectedTask = foundTask || null;
+            
+            // Refresh button variants in task details when a task is selected
+            const taskDetailsComponent = this.template.querySelector('c-task-details');
+            if (taskDetailsComponent && typeof taskDetailsComponent.refreshButtonVariants === 'function') {
+                taskDetailsComponent.refreshButtonVariants();
+            }
         }
     }
 
