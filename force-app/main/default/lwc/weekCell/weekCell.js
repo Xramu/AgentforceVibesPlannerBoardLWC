@@ -54,10 +54,9 @@ export default class WeekCell extends LightningElement {
     // Relay child events upward
     relayDragStart(event) {
         event.stopPropagation();
-        const detail = event.detail || {};
         this.dispatchEvent(
             new CustomEvent('taskdragstart', {
-                detail,
+                detail: { taskId: (event.detail && event.detail.taskId) || null },
                 bubbles: true,
                 composed: true
             })
