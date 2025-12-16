@@ -25,14 +25,6 @@
                     </div>
                 </div>
 
-                <!-- Completion Date -->
-                <lightning-datepicker
-                    label="Completion Date"
-                    value={task.completionDate}
-                    onchange={handleChangeCompletionDate}
-                    class="slds-m-bottom_small"
-                ></lightning-datepicker>
-
                 <!-- Navigation Buttons -->
                 <div class="slds-grid slds-gutters_x-small slds-m-top_small">
                     <div class="slds-col slds-size_1-of-2">
@@ -57,11 +49,20 @@
                     </div>
                 </div>
 
+                <!-- Completion Date -->
+                <lightning-datepicker
+                    label="Completion Date"
+                    value={task.completionDate}
+                    onchange={handleChangeCompletionDate}
+                    class="slds-m-bottom_small"
+                ></lightning-datepicker>
+
                 <!-- Name -->
                 <lightning-input
                     label="Task Name"
                     value={task.name}
                     onchange={handleChangeName}
+                    onblur={handleSave}
                     class="slds-m-bottom_small"
                 ></lightning-input>
 
@@ -71,6 +72,7 @@
                     label={estimatedCostLabel}
                     value={task.estimatedCost}
                     onchange={handleChangeEstimatedCost}
+                    onblur={handleSave}
                     class="slds-m-bottom_small"
                 ></lightning-input>
 
@@ -80,20 +82,9 @@
                     label-visible
                     value={task.taskDescription}
                     onchange={handleChangeDescription}
+                    onblur={handleSave}
                     class="slds-m-bottom_small"
                 ></lightning-input-rich-text>
-
-                <!-- Save Button -->
-                <div class="slds-m-bottom_small">
-                    <button
-                        type="button"
-                        class="custom-save-button"
-                        onclick={handleSave}
-                        disabled={isSaving}
-                    >
-                        {saveButtonLabel}
-                    </button>
-                </div>
 
                 <!-- Task Status Buttons -->
                 <!-- <div class="slds-m-bottom_small">

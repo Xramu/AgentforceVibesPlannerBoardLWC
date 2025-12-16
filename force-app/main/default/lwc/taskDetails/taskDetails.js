@@ -28,9 +28,8 @@ export default class TaskDetails extends LightningElement {
 
     @track handlerOptions = HANDLER_OPTIONS.map((opt) => ({ ...opt }));
     @track statusOptions = STATUS_OPTIONS.map((opt) => ({ ...opt }));
-    @track isSaving = false;
-    @track saveButtonLabel = 'Save Changes';
     @track _pendingChanges = {};
+    _debouncers = {};
 
     updateButtonVariants(task) {
         this.task ??= task;
@@ -133,13 +132,15 @@ export default class TaskDetails extends LightningElement {
     handleHandlerChange(event) {
         const newHandler = event.target.dataset.value;
         this.updateTaskLocally('taskHandler', newHandler);
-        this.setPendingChange('taskHandler', newHandler);
+        // Save immediately when handler changes
+        this.persistField('taskHandler', newHandler);
     }
 
     handleStatusChange(event) {
         const newStatus = event.target.dataset.value;
         this.updateTaskLocally('taskStatus', newStatus);
-        this.setPendingChange('taskStatus', newStatus);
+        // Save immediately when status changes
+        this.persistField('taskStatus', newStatus);
     }
 
     handleMoveBack() {
@@ -182,9 +183,6 @@ export default class TaskDetails extends LightningElement {
             return;
         }
 
-        this.isSaving = true;
-        this.saveButtonLabel = 'Saving...';
-
         try {
             // Collect all pending changes
             const changes = { ...this._pendingChanges };
@@ -219,9 +217,6 @@ export default class TaskDetails extends LightningElement {
                     variant: 'error'
                 })
             );
-        } finally {
-            this.isSaving = false;
-            this.saveButtonLabel = 'Save Changes';
         }
     }
 
@@ -232,7 +227,6 @@ export default class TaskDetails extends LightningElement {
         }
 
         // Debounce map per-field to avoid flooding server for rich text typing
-        this._debouncers ??= {};
         const key = fieldName;
         if (this._debouncers[key]) {
             clearTimeout(this._debouncers[key]);
