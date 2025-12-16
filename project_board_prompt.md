@@ -61,6 +61,8 @@ Each week's box should have the week number written inside them on the top left 
 All the tasks that have their Completion Date set to that year should be shown inside the box of the week the date belongs to.
 If there are multiple tasks inside a single week, stack them vertically inside the week's box.
 
+Grey out the current week's box background to highlight the current week.
+
 Tasks inside the weeks can be dragged and dropped into other weeks, keeping their time and day of the week same. Update the date on the record whenever dragged to a different week. Update the UI to show the change immideately.
 
 Make sure that a task can be inside only one week in the UI no matter when dragged from week to week or from the Task Pool Window to a week while previously existing in a different week.
