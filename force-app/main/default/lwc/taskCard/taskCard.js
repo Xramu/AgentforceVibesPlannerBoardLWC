@@ -12,14 +12,27 @@ export default class TaskCard extends LightningElement {
     @api taskHandler; // Internal | Customer | Other
     @api taskStatus; // used for potential badges in future
 
+    // Selected task provided by parent (e.g., projectBoard)
+    @api selectedTask; // may be null
+
     get clippedName() {
         return this.name || '';
     }
 
+    // Avoid inline expressions in template; compute classes here
     get cardClass() {
         const base = 'task-card slds-p-around_x-small slds-m-vertical_xx-small';
         const handlerClass = HANDLER_COLOR_CLASS[this.taskHandler] || 'handler-other';
-        return `${base} ${handlerClass}`;
+        const selectedClass = this.isSelected ? 'is-selected' : '';
+        return `${base} ${handlerClass} ${selectedClass}`.trim();
+    }
+
+    // Determine if this card is the currently selected one; guard for nulls
+    get isSelected() {
+        const sel = this.selectedTask;
+        if (!sel || !sel.id) return false;
+        console.log(`ID: ${this.id} Selected ID: ${sel.id} Match: ${this.id.includes(sel.id)}`)
+        return this.id.includes(sel.id);
     }
 
     handleDragStart(evt) {

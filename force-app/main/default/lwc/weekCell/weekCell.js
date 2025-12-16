@@ -5,6 +5,7 @@ export default class WeekCell extends LightningElement {
     @api current = false;
     @api tasks = [];
     @api currentYear; // The year this week belongs to
+    @api selectedTask; // forwarded from calendar to task cards
 
     get cellClass() {
         const base = 'week-cell slds-p-around_x-small slds-m-around_xx-small';

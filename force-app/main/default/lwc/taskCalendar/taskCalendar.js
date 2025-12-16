@@ -5,6 +5,7 @@ export default class TaskCalendar extends LightningElement {
     @api weekCount = 52;
     @api datedTasks = [];
     @api currentWeek;
+    @api selectedTask; // forwarded from projectBoard to week cells/cards
 
     get weeks() {
         const weeks = [];

@@ -3,6 +3,7 @@ import { LightningElement, api } from 'lwc';
 // Project rules: keep template simple; compute in JS only.
 export default class TaskPool extends LightningElement {
     @api tasks = [];
+    @api selectedTask; // forwarded from projectBoard
 
     // Filter tasks that have no completion date (undated tasks)
     get undatedTasks() {

@@ -41,6 +41,7 @@
                 <div class="slds-col slds-size_1-of-4 slds-medium-size_1-of-4 slds-large-size_1-of-4 pool-col">
                     <c-task-pool
                         tasks={allTasks}
+                        selected-task={selectedTask}
                         ontaskdragstart={handleTaskDragStart}
                         ontaskselect={handleTaskSelect}>
                     </c-task-pool>
@@ -53,6 +54,7 @@
                         week-count={weekCount}
                         dated-tasks={allTasks}
                         current-week={currentWeek}
+                        selected-task={selectedTask}
                         ontaskdrop={handleCalendarDrop}
                         ontaskselect={handleTaskSelect}
                         ontaskreweek={handleTaskReweek}>
