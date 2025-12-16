@@ -29,13 +29,11 @@
 }
 
 /* Status-specific styling */
-.status-group .status-tasks {
+.status-tasks {
     border-top: 4px solid;
 }
 
-.status-group:not(.not-started) .status-tasks {
-    border-top-color: #9e9e9e; /* Gray */
-}
+/* Status-specific colors */
 .not-started .status-tasks {
     border-top-color: #9e9e9e; /* Gray */
 }
@@ -51,6 +49,6 @@
 .completed .status-tasks {
     border-top-color: #2e8540; /* Green */
 }
-.closed .status-tasks {
+.closed-not-completed .status-tasks {
     border-top-color: #ffb75d; /* Yellow */
 }

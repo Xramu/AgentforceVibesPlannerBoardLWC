@@ -6,7 +6,7 @@
         <div class="slds-card__body slds-p-around_x-small">
             <div class="task-pool-content">
                 <!-- Not Started -->
-                <div class="status-group">
+                <div class="status-group not-started">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Not Started</div>
                     <div class="status-tasks">
                         <template for:each={notStarted} for:item="t">
@@ -27,7 +27,7 @@
                 </div>
                 
                 <!-- On Track -->
-                <div class="status-group">
+                <div class="status-group on-track">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">On Track</div>
                     <div class="status-tasks">
                         <template for:each={onTrack} for:item="t">
@@ -48,7 +48,7 @@
                 </div>
                 
                 <!-- Late -->
-                <div class="status-group">
+                <div class="status-group late">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Late</div>
                     <div class="status-tasks">
                         <template for:each={late} for:item="t">
@@ -69,7 +69,7 @@
                 </div>
                 
                 <!-- On Hold -->
-                <div class="status-group">
+                <div class="status-group on-hold">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">On Hold</div>
                     <div class="status-tasks">
                         <template for:each={onHold} for:item="t">
@@ -90,7 +90,7 @@
                 </div>
                 
                 <!-- Completed -->
-                <div class="status-group">
+                <div class="status-group completed">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Completed</div>
                     <div class="status-tasks">
                         <template for:each={completed} for:item="t">
@@ -111,7 +111,7 @@
                 </div>
                 
                 <!-- Closed, not Completed -->
-                <div class="status-group">
+                <div class="status-group closed-not-completed">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Closed, not Completed</div>
                     <div class="status-tasks">
                         <template for:each={closedNotCompleted} for:item="t">

@@ -25,7 +25,8 @@ export default class TaskPool extends LightningElement {
 
     byStatus(status) {
         const items = Array.isArray(this.tasks) ? this.tasks : [];
-        return items.filter((t) => t.taskStatus === status);
+        // Case insensitive matching and trim to handle potential whitespace issues
+        return items.filter((t) => t.taskStatus && t.taskStatus.trim() === status);
     }
 
     // Relay child events upward so container can manage state
