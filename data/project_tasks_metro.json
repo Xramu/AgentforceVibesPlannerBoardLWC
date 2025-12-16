@@ -1,0 +1,24 @@
+{
+    "records": [
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_001"},
+            "Name": "M-01 Maintenance",
+            "Task_Description__c": "Project for the maintenance of the local metro cars.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "5000",
+            "Completion_Date__c": "2026-06-12",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_002"},
+            "Name": "M-02 Maintenance",
+            "Task_Description__c": "Project for the maintenance of the local metro cars.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "4500",
+            "Completion_Date__c": "2026-01-22",
+            "Assigned_Project__c": "@project_metro"
+        }
+    ]
+}

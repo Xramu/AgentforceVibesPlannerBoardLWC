@@ -1,0 +1,9 @@
+{
+    "records": [
+        {
+            "attributes": { "type": "Project__c", "referenceId": "project_metro"},
+            "Name": "Metro Maintenance",
+            "Project_Description__c": "Project for the maintenance of the local metro cars."
+        }
+    ]
+}
