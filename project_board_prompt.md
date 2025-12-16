@@ -108,7 +108,7 @@ The project management board component should feel responsive by showing changes
 
 - Ask questions until you're 95% sure you can complete this task.
 - Query the objects using CLI if they are not exposed in the project.
-- Do not create any new custom objects into the org, use the specified existing objects.
-- Do not include any complex logic inside the HTML files, move it to the JavaScript files.
-- Do not deploy the project to the org automatically, a human will deploy it manually.
+- NEVER create any new custom objects into the org, use the specified existing objects.
+- NEVER include any complex logic inside the HTML files, move it to the JavaScript files.
+- NEVER deploy the project to the org automatically, a human will deploy it manually.
 - NEVER use window.prompt for taking input from the user.
