@@ -1,6 +1,6 @@
 .slds-card__header {
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: nowrap;
 }
 
@@ -52,6 +52,11 @@
 /* Add spacing between elements */
 .slds-card__header > *:not(:last-child) {
     margin-right: 1rem;
+}
+
+/* Make year navigation container push to the right */
+.year-navigation-container {
+    margin-left: auto;
 }
 
 /* Responsive adjustments */
