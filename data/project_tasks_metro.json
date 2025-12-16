@@ -3,7 +3,7 @@
         {
             "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_001"},
             "Name": "M-01 Maintenance",
-            "Task_Description__c": "Project for the maintenance of the local metro cars.",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
             "Task_Handler__c": "Internal",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "5000",
@@ -13,11 +13,81 @@
         {
             "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_002"},
             "Name": "M-02 Maintenance",
-            "Task_Description__c": "Project for the maintenance of the local metro cars.",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
             "Task_Handler__c": "Customer",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "4500",
             "Completion_Date__c": "2026-01-22",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_003"},
+            "Name": "M-03 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
+            "Task_Handler__c": "Other",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "4000",
+            "Completion_Date__c": "2026-07-28",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_004"},
+            "Name": "M-04 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "3900",
+            "Completion_Date__c": "2026-05-11",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_005"},
+            "Name": "M-05 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "2500",
+            "Completion_Date__c": "2026-04-07",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_006"},
+            "Name": "M-06 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "3000",
+            "Completion_Date__c": "2026-01-01",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_007"},
+            "Name": "M-07 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "3500",
+            "Completion_Date__c": "2026-06-21",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_008"},
+            "Name": "M-08 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "7500",
+            "Completion_Date__c": "2026-08-07",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_009"},
+            "Name": "M-09 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the metro car unit.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "6500",
+            "Completion_Date__c": "2026-09-04",
             "Assigned_Project__c": "@project_metro"
         }
     ]
