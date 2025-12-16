@@ -119,10 +119,12 @@ export default class ProjectBoard extends LightningElement {
     }
 
     handleTaskSelect(event) {
+        console.log(event.detail.taskId);
         const { taskId } = event.detail || {};
         if (taskId) {
             const foundTask = this.findTaskById(taskId);
             this.selectedTask = foundTask || null;
+            console.log(this.selectedTask);
         }
     }
 
@@ -179,8 +181,8 @@ export default class ProjectBoard extends LightningElement {
 
     findTaskById(id) {
         return (
-            (this.datedTasks && this.datedTasks.find((t) => t.id === id)) ||
-            (this.poolTasks && this.poolTasks.find((t) => t.id === id))
+            (this.datedTasks && this.datedTasks.find((t) => id.includes(t.id))) ||
+            (this.poolTasks && this.poolTasks.find((t) => id.includes(t.id)))
         );
     }
 
