@@ -21,15 +21,19 @@ The titles on each section have been changed to be a fitting example for a hardw
 - Drag & drop tasks from week to week inside the calendar.
 - Navigate from year to year to see upcoming or past tasks.
 
-## Environment Setup Guide
+## Setup Guide
 
 [Resources for installing VSCode for Salesforce DX projects](https://developer.salesforce.com/docs/platform/sfvscode-extensions/overview)
 
 Once your environment is set up and ready for development:
+
+Connect to an org and deploy the component and custom objects:
 - Press Command + Shift + P and run the command `SFDX: Authorize an Org` to connect your Salesforce org.
 - Right click the `force-app` folder and select `SFDX: Deploy This Source to Org`
-- The `Project Board` custom component should now be available when editing Salesforce lightning apps.
+- The `Project Board` custom component should now be available when editing Salesforce Lightning apps.
 
-To show data on the board:
-- Create a new record or records of `Project__c` custom object.
-- Create a new record or records of `Project_Task__c` custom object and assign a project to each one.
+Push mockup data to populate the calendar:
+- Open the terminal inside VSCode.
+- Copy & paste `sf data import tree --plan data/import_data.json --target-org <alias-of-target-org>` into the terminal.
+- Replace `<alias-of-target-org>` with the alias you gave to your org.
+- Run the command to create the mockup records.
