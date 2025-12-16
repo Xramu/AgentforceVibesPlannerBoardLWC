@@ -1,0 +1,30 @@
+.slds-card__header {
+    align-items: center;
+}
+
+.project-selector-container {
+    display: flex;
+    align-items: center;
+}
+
+.project-selector-container lightning-combobox {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 200px;
+}
+
+/* Ensure the combobox doesn't stretch */
+.slds-combobox_container {
+    width: auto !important;
+    max-width: 300px;
+}
+
+.slds-combobox {
+    width: auto !important;
+    max-width: 300px;
+}
+
+/* Additional styling to prevent stretching */
+.slds-combobox_container .slds-combobox {
+    max-width: 300px;
+}

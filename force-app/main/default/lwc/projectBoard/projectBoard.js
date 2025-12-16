@@ -1,5 +1,6 @@
 import { LightningElement, wire, track } from 'lwc';
 import getTasksByYear from '@salesforce/apex/ProjectBoardService.getTasksByYear';
+import getAllProjects from '@salesforce/apex/ProjectBoardService.getAllProjects';
 import shiftTaskByWeeks from '@salesforce/apex/ProjectBoardService.shiftTaskByWeeks';
 import setTaskDateToWeekMonday from '@salesforce/apex/ProjectBoardService.setTaskDateToWeekMonday';
 
@@ -51,6 +52,36 @@ export default class ProjectBoard extends LightningElement {
         }
     }
 
+    // Wire fetch for projects
+    @wire(getAllProjects)
+    wiredProjects({ error, data }) {
+        if (data) {
+            // Transform data to match lightning-combobox format (label and value)
+            const projectsWithLabels = data.map(project => ({
+                label: project.name,
+                value: project.id
+            }));
+            // Add "All Projects" option at the beginning
+            this.projects = [{ label: 'All Projects', value: null }, ...projectsWithLabels];
+        } else if (error) {
+            // non-blocking for PoC; log and keep UI usable
+            // eslint-disable-next-line no-console
+            console.error('Failed to load projects', error);
+        }
+    }
+
+    // Selected project tracking
+    @track selectedProjectId = null;
+    @track projects = [];
+    
+    // Get filtered tasks based on selected project
+    get filteredTasks() {
+        if (!this.selectedProjectId) {
+            return this.allTasks;
+        }
+        return this.allTasks.filter(task => task.assignedProjectId === this.selectedProjectId);
+    }
+
     // Year navigation labels
     get prevYearLabel() {
         return `${this.selectedYear - 1}`;
@@ -67,6 +98,10 @@ export default class ProjectBoard extends LightningElement {
     handleNextYear() {
         this.selectedYear = this.selectedYear + 1;
         this.selectedTask = null;
+    }
+
+    handleProjectChange(event) {
+        this.selectedProjectId = event.detail.value;
     }
 
     // Child event handlers

@@ -353,6 +353,33 @@ public with sharing class ProjectBoardService {
         return weekNo;
     }
 
+    /**
+     * Gets all projects for the dropdown
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<ProjectDTO> getAllProjects() {
+        List<Project__c> projects = [
+            SELECT Id, Name
+            FROM Project__c
+            ORDER BY Name
+        ];
+        
+        List<ProjectDTO> projectDTOs = new List<ProjectDTO>();
+        for (Project__c project : projects) {
+            ProjectDTO dto = new ProjectDTO();
+            dto.id = project.Id;
+            dto.name = project.Name;
+            projectDTOs.add(dto);
+        }
+        
+        return projectDTOs;
+    }
+    
+    public class ProjectDTO {
+        @AuraEnabled public Id id;
+        @AuraEnabled public String name;
+    }
+
     @AuraEnabled(cacheable=true)
     public static Date getMondayOfIsoWeek(Integer year, Integer weekNumber) {
         if (year == null || weekNumber == null) return null;

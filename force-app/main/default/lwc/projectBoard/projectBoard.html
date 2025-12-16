@@ -12,26 +12,41 @@
                 </div>
             </div>
 
-            <div class="slds-button-group" role="group" aria-label="Year navigation">
-                <lightning-button
-                    variant="neutral"
-                    label={prevYearLabel}
-                    title="Previous year"
-                    icon-name="utility:chevronleft"
-                    icon-position="left"
-                    onclick={handlePrevYear}>
-                </lightning-button>
-                <div class="slds-text-title_bold slds-p-horizontal_medium slds-align_absolute-center year-title">
-                    {selectedYear}
+            <div class="project-selector-container">
+                    <lightning-combobox
+                        label="Select Project"
+                        name="projectSelector"
+                        value={selectedProjectId}
+                        options={projects}
+                        onchange={handleProjectChange}
+                        placeholder="All Projects">
+                    </lightning-combobox>
                 </div>
-                <lightning-button
-                    variant="neutral"
-                    label={nextYearLabel}
-                    title="Next year"
-                    icon-name="utility:chevronright"
-                    icon-position="right"
-                    onclick={handleNextYear}>
-                </lightning-button>
+
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-2 slds-grid slds-grid_align-end">
+                    <div class="slds-button-group" role="group" aria-label="Year navigation">
+                        <lightning-button
+                            variant="neutral"
+                            label={prevYearLabel}
+                            title="Previous year"
+                            icon-name="utility:chevronleft"
+                            icon-position="left"
+                            onclick={handlePrevYear}>
+                        </lightning-button>
+                        <div class="slds-text-title_bold slds-p-horizontal_medium slds-align_absolute-center year-title">
+                            {selectedYear}
+                        </div>
+                        <lightning-button
+                            variant="neutral"
+                            label={nextYearLabel}
+                            title="Next year"
+                            icon-name="utility:chevronright"
+                            icon-position="right"
+                            onclick={handleNextYear}>
+                        </lightning-button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -40,7 +55,7 @@
                 <!-- Task Pool (left) -->
                 <div class="slds-col slds-size_1-of-4 slds-medium-size_1-of-4 slds-large-size_1-of-4 pool-col">
                     <c-task-pool
-                        tasks={allTasks}
+                        tasks={filteredTasks}
                         selected-task={selectedTask}
                         ontaskdragstart={handleTaskDragStart}
                         ontaskselect={handleTaskSelect}>
@@ -52,7 +67,7 @@
                     <c-task-calendar
                         year={selectedYear}
                         week-count={weekCount}
-                        dated-tasks={allTasks}
+                        dated-tasks={filteredTasks}
                         current-week={currentWeek}
                         selected-task={selectedTask}
                         ontaskdrop={handleCalendarDrop}
