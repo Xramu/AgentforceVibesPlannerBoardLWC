@@ -42,7 +42,6 @@ export default class TaskPool extends LightningElement {
     }
 
     relaySelect(event) {
-        console.log("Relayed from task pool!");
         event.stopPropagation();
         this.dispatchEvent(
             new CustomEvent('taskselect', {

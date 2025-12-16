@@ -23,10 +23,6 @@ export default class TaskDetails extends LightningElement {
     @track handlerOptions = HANDLER_OPTIONS.map((opt) => ({ ...opt }));
     @track statusOptions = STATUS_OPTIONS.map((opt) => ({ ...opt }));
 
-    connectedCallback() {
-        this.updateButtonVariants();
-    }
-
     updateButtonVariants() {
         if (!this.task) return;
         // Highlight selected handler
@@ -79,7 +75,6 @@ export default class TaskDetails extends LightningElement {
     }
 
     updateTaskLocally(field, value) {
-        console.log("Updated Task locally!");
         if (!this.task) return;
         const updated = { ...this.task, [field]: value };
         this.task = updated;
@@ -105,5 +100,11 @@ export default class TaskDetails extends LightningElement {
         if (changedProperties.has('task')) {
             this.updateButtonVariants();
         }
+    }
+
+    // Ensure task details are updated when task property changes
+    rendered() {
+        // This will be called after every render, but we only want to update button variants
+        // when the task actually changes, which is handled by the updated() method
     }
 }
