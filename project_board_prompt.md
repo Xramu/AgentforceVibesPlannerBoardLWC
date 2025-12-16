@@ -14,6 +14,7 @@ Task Object:
 - `Name` field stores the task's name.
 - `Task_Description__c` field stores the task's description
 - `Completion_Date__c` field is a Date value of the task's planned date of completion.
+- `Assigned_Project__c` field is a lookup reference to the project record the task is assigned to.
 - `Task_Handler__c` field is a picklist field that determines the handler of the task.
     - Possible task handler picklist values are `Internal`, `Customer` and `Other`
 - `Task_Status__c` field is a picklist field that determines the task's current status.
