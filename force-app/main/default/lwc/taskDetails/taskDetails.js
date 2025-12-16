@@ -23,9 +23,11 @@ export default class TaskDetails extends LightningElement {
     @track handlerOptions = HANDLER_OPTIONS.map((opt) => ({ ...opt }));
     @track statusOptions = STATUS_OPTIONS.map((opt) => ({ ...opt }));
 
-    updateButtonVariants() {
+    updateButtonVariants(task) {
         console.log("Updating button variants.");
         console.log("Task:", this.task);
+
+        this.task ??= task;
         if (!this.task) return;
         
         // Highlight selected handler
@@ -166,8 +168,8 @@ export default class TaskDetails extends LightningElement {
     
     // Expose a method to manually trigger button variant updates
     // This can be called from parent components when needed
-    @api refreshButtonVariants() {
+    @api refreshButtonVariants(task) {
         console.log("Manually refreshing button variants");
-        this.updateButtonVariants();
+        this.updateButtonVariants(task);
     }
 }
