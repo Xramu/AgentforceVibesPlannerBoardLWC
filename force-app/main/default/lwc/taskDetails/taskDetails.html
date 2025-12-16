@@ -8,7 +8,7 @@
             <template if:true={task}>
                 <!-- Task Handler Buttons -->
                 <div class="slds-m-bottom_small">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Maintenance Handler</div>
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Assigned Responsibility</div>
                     <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
                         <template for:each={handlerOptions} for:item="option">
                             <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
@@ -27,7 +27,7 @@
 
                 <!-- Name -->
                 <lightning-input
-                    label="Maintenance Name"
+                    label="Job Name"
                     value={task.name}
                     onchange={handleChangeName}
                     onblur={handleSave}
@@ -47,13 +47,13 @@
                 <!-- Create Quota Button -->
                 <div class="slds-m-top_small">
                     <button type="button" class="custom-button record-btn">
-                        Create Quota
+                        Create Opportunity
                     </button>
                 </div>
 
                 <!-- Description (Rich Text) -->
                 <lightning-input-rich-text
-                    label="Maintenance Description"
+                    label="Job Description"
                     label-visible
                     value={task.taskDescription}
                     onchange={handleChangeDescription}
@@ -63,7 +63,7 @@
 
                 <!-- Completion Date -->
                 <lightning-datepicker
-                    label="Completion Date"
+                    label="Planned Start Date"
                     value={task.completionDate}
                     onchange={handleChangeCompletionDate}
                     class="slds-m-bottom_small"

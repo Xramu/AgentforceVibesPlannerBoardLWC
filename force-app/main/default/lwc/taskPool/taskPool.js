@@ -24,13 +24,13 @@ export default class TaskPool extends LightningElement {
 
     // Section titles mapping (Other -> "None", Internal -> "OEM", Customer -> "Customer")
     get otherTitle() {
-        return 'None';
+        return 'Not Assigned';
     }
     get internalTitle() {
-        return 'OEM';
+        return 'OEM Assigned';
     }
     get customerTitle() {
-        return 'Customer';
+        return 'Customer Assigned';
     }
 
     byHandler(handler) {
