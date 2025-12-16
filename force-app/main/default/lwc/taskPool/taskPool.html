@@ -5,29 +5,6 @@
         </div>
         <div class="slds-card__body slds-p-around_x-small">
             <div class="task-pool-content">
-                <!-- Undated tasks -->
-                <div class="handler-group handler-undated">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Maintenance Date Not Set</div>
-                    <hr class="handler-divider handler-undated-divider"/>
-                    <div class="handler-tasks">
-                        <template for:each={undatedTasks} for:item="t">
-                            <c-task-card
-                                key={t.id}
-                                id={t.id}
-                                name={t.name}
-                                task-handler={t.taskHandler}
-                                task-status={t.taskStatus}
-                                selected-task={selectedTask}
-                                ontaskdragstart={relayDragStart}
-                                ontaskselect={relaySelect}
-                            ></c-task-card>
-                        </template>
-                        <template if:false={undatedTasks.length}>
-                            <div class="slds-text-body_small slds-text-color_weak slds-m-around_small">No undated tasks</div>
-                        </template>
-                    </div>
-                </div>
-
                 <!-- Other (display title "None") -->
                 <div class="handler-group handler-other">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">{otherTitle}</div>
