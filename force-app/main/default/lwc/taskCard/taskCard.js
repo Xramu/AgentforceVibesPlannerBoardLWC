@@ -31,7 +31,6 @@ export default class TaskCard extends LightningElement {
     get isSelected() {
         const sel = this.selectedTask;
         if (!sel || !sel.id) return false;
-        console.log(`ID: ${this.id} Selected ID: ${sel.id} Match: ${this.id.includes(sel.id)}`)
         return this.id.includes(sel.id);
     }
 

@@ -73,6 +73,7 @@ export default class ProjectBoard extends LightningElement {
     handleTaskDragStart(event) {
         const { taskId } = event.detail || {};
         this.dragTaskId = taskId;
+        console.log(this.dragTaskId);
     }
 
     handleCalendarDrop(event) {
@@ -86,29 +87,15 @@ export default class ProjectBoard extends LightningElement {
         const prevState = this.snapshotState();
 
         try {
-            if (!task.completionDate) {
-                // from pool -> calendar: set Monday of week
-                this.applyTaskMoveToWeek(task.id, weekNumber);
-                setTaskDateToWeekMonday({ taskId: task.id, year: this.selectedYear, weekNumber })
-                    .then((updated) => this.mergeServerTask(updated))
-                    .catch((err) => {
-                        this.restoreState(prevState);
-                        // eslint-disable-next-line no-console
-                        console.error('Failed to set date', err);
-                    });
-            } else {
-                // from week -> other week: keep same weekday if possible
-                this.applyTaskReweek(task.id, task.completionDate, weekNumber);
-                // server: compute Monday and preserve weekday delta from current date
-                // To keep PoC simple and robust, set to Monday (per spec for new date default) if we cannot preserve weekday reliably
-                setTaskDateToWeekMonday({ taskId: task.id, year: this.selectedYear, weekNumber })
-                    .then((updated) => this.mergeServerTask(updated))
-                    .catch((err) => {
-                        this.restoreState(prevState);
-                        // eslint-disable-next-line no-console
-                        console.error('Failed to reweek date', err);
-                    });
-            }
+            // from pool -> calendar: set Monday of week
+            this.applyTaskMoveToWeek(task.id, weekNumber);
+            setTaskDateToWeekMonday({ taskId: task.id, year: this.selectedYear, weekNumber })
+                .then((updated) => this.mergeServerTask(updated))
+                .catch((err) => {
+                    this.restoreState(prevState);
+                    // eslint-disable-next-line no-console
+                    console.error('Failed to set date', err);
+                });
         } finally {
             this.dragTaskId = null;
         }
