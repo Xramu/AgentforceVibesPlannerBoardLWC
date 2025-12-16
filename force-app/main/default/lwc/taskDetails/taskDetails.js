@@ -79,6 +79,7 @@ export default class TaskDetails extends LightningElement {
     }
 
     updateTaskLocally(field, value) {
+        console.log("Updated Task locally!");
         if (!this.task) return;
         const updated = { ...this.task, [field]: value };
         this.task = updated;

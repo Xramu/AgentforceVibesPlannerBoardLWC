@@ -32,6 +32,7 @@ export default class WeekCell extends LightningElement {
     }
 
     handleSelect() {
+        console.log("Select Fired!");
         // Select this week's tasks (or just the week?)
         // For now, we'll just bubble the click to the calendar
         // If we want to select a specific task within the week, we'd need to adjust
