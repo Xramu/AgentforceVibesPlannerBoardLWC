@@ -33,15 +33,15 @@
                 <!-- Task Handler Buttons -->
                 <div class="slds-m-bottom_small">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Task Handler</div>
-                    <div class="slds-grid slds-gutters_x-small">
+                    <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
                         <template for:each={handlerOptions} for:item="option">
-                            <div key={option.value} class="slds-col">
+                            <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
                                 <lightning-button
                                     label={option.label}
                                     variant={option.variant}
                                     onclick={handleHandlerChange}
                                     data-value={option.value}
-                                    class="handler-btn"
+                                    class="handler-btn slds-button_full-width"
                                 ></lightning-button>
                             </div>
                         </template>
@@ -51,15 +51,15 @@
                 <!-- Task Status Buttons -->
                 <div class="slds-m-bottom_small">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Task Status</div>
-                    <div class="slds-grid slds-gutters_x-small">
+                    <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
                         <template for:each={statusOptions} for:item="option">
-                            <div key={option.value} class="slds-col">
+                            <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
                                 <lightning-button
                                     label={option.label}
                                     variant={option.variant}
                                     onclick={handleStatusChange}
                                     data-value={option.value}
-                                    class="status-btn"
+                                    class="status-btn slds-button_full-width"
                                 ></lightning-button>
                             </div>
                         </template>

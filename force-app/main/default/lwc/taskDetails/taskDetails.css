@@ -9,3 +9,39 @@
 .status-btn {
     /* Color variants handled via JS */
 }
+
+.slds-button_full-width {
+    width: 100%;
+    height: 32px; /* Consistent height for all buttons */
+    min-height: 32px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Show ellipsis for overflow text */
+    max-width: 150px; /* Prevent extremely long text from breaking layout */
+}
+
+/* Ensure proper spacing for button groups */
+.slds-grid_vertical-align-center {
+    align-items: center;
+}
+
+.slds-grid_align-center {
+    justify-content: center;
+}
+
+/* Make sure buttons in grid cells are properly contained */
+.slds-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button container for consistent sizing */
+.button-container {
+    min-width: 100px; /* Ensure minimum width for buttons */
+    max-width: 150px; /* Prevent overflow */
+    min-height: 32px; /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

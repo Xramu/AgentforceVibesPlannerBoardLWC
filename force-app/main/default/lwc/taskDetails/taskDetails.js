@@ -14,7 +14,7 @@ const STATUS_OPTIONS = [
     { value: 'Late', label: 'Late', variant: 'neutral' },
     { value: 'On Hold', label: 'On Hold', variant: 'neutral' },
     { value: 'Completed', label: 'Completed', variant: 'neutral' },
-    { value: 'Closed, not Completed', label: 'Closed, not Completed', variant: 'neutral' }
+    { value: 'Closed, not Completed', label: 'Closed', variant: 'neutral' }
 ];
 
 export default class TaskDetails extends LightningElement {
