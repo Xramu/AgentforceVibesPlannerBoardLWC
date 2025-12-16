@@ -1,10 +1,5 @@
 Create a project management board Lightning Web Component called `Project Management Board`. The code should follow standard Salesforce styling and development best practices and be deployable to a scratch or or sandbox. Keep it fun and readable.
 
-- Ask questions until you're 95% sure you can complete this task.
-- Do not create any new custom objects into the org, use the specified existing objects.
-- Do not include any complex logic inside the HTML files, move it to the JavaScript files.
-- Do not deploy the project to the org automatically, a human will deploy it manually.
-
 ## Custom Object References
 
 Project Object:
@@ -85,3 +80,11 @@ Any changes done inside the Task Details Window will be saved to the Task object
 
 Any changes to the task or project field values should be updated to the record file and be shown in real time on the project management board component.
 The project management board component should feel responsive by shwoing changes in real time.
+
+## Extra Specifications
+
+- Ask questions until you're 95% sure you can complete this task.
+- Query the objects using CLI if they are not exposed in the project.
+- Do not create any new custom objects into the org, use the specified existing objects.
+- Do not include any complex logic inside the HTML files, move it to the JavaScript files.
+- Do not deploy the project to the org automatically, a human will deploy it manually.
