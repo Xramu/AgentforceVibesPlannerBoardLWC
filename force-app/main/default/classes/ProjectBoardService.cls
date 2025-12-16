@@ -67,24 +67,147 @@ public with sharing class ProjectBoardService {
         return resp;
     }
 
+    /**
+     * Updates a task's name field
+     */
     @AuraEnabled
-    public static TaskDTO updateTask(TaskDTO input) {
-        if (input == null || input.id == null) {
+    public static TaskDTO updateTaskName(Id taskId, String name) {
+        if (taskId == null) {
             throw new AuraHandledException('Task id is required.');
         }
-        Project_Task__c record = new Project_Task__c(Id = input.id);
-        // Only set fields provided (null values clear fields)
-        record.Name = input.name;
-        record.Task_Description__c = input.taskDescription;
-        record.Completion_Date__c = input.completionDate;
-        record.Assigned_Project__c = input.assignedProjectId;
-        record.Task_Handler__c = input.taskHandler;
-        record.Task_Status__c = input.taskStatus;
-
+        if (name == null) {
+            throw new AuraHandledException('Name is required.');
+        }
+        Project_Task__c record = new Project_Task__c(Id = taskId, Name = name);
         try {
             update record;
         } catch (DmlException e) {
-            throw new AuraHandledException('Failed to update task: ' + e.getMessage());
+            throw new AuraHandledException('Failed to update task name: ' + e.getMessage());
+        }
+
+        Project_Task__c refreshed = [
+            SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
+                   Task_Handler__c, Task_Status__c
+            FROM Project_Task__c
+            WHERE Id = :record.Id
+            LIMIT 1
+        ];
+        return toDTO(refreshed);
+    }
+
+    /**
+     * Updates a task's description field
+     */
+    @AuraEnabled
+    public static TaskDTO updateTaskDescription(Id taskId, String description) {
+        if (taskId == null) {
+            throw new AuraHandledException('Task id is required.');
+        }
+        Project_Task__c record = new Project_Task__c(Id = taskId, Task_Description__c = description);
+        try {
+            update record;
+        } catch (DmlException e) {
+            throw new AuraHandledException('Failed to update task description: ' + e.getMessage());
+        }
+
+        Project_Task__c refreshed = [
+            SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
+                   Task_Handler__c, Task_Status__c
+            FROM Project_Task__c
+            WHERE Id = :record.Id
+            LIMIT 1
+        ];
+        return toDTO(refreshed);
+    }
+
+    /**
+     * Updates a task's completion date field
+     */
+    @AuraEnabled
+    public static TaskDTO updateTaskCompletionDate(Id taskId, Date completionDate) {
+        if (taskId == null) {
+            throw new AuraHandledException('Task id is required.');
+        }
+        Project_Task__c record = new Project_Task__c(Id = taskId, Completion_Date__c = completionDate);
+        try {
+            update record;
+        } catch (DmlException e) {
+            throw new AuraHandledException('Failed to update task completion date: ' + e.getMessage());
+        }
+
+        Project_Task__c refreshed = [
+            SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
+                   Task_Handler__c, Task_Status__c
+            FROM Project_Task__c
+            WHERE Id = :record.Id
+            LIMIT 1
+        ];
+        return toDTO(refreshed);
+    }
+
+    /**
+     * Updates a task's handler field
+     */
+    @AuraEnabled
+    public static TaskDTO updateTaskHandler(Id taskId, String handler) {
+        if (taskId == null) {
+            throw new AuraHandledException('Task id is required.');
+        }
+        Project_Task__c record = new Project_Task__c(Id = taskId, Task_Handler__c = handler);
+        try {
+            update record;
+        } catch (DmlException e) {
+            throw new AuraHandledException('Failed to update task handler: ' + e.getMessage());
+        }
+
+        Project_Task__c refreshed = [
+            SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
+                   Task_Handler__c, Task_Status__c
+            FROM Project_Task__c
+            WHERE Id = :record.Id
+            LIMIT 1
+        ];
+        return toDTO(refreshed);
+    }
+
+    /**
+     * Updates a task's status field
+     */
+    @AuraEnabled
+    public static TaskDTO updateTaskStatus(Id taskId, String status) {
+        if (taskId == null) {
+            throw new AuraHandledException('Task id is required.');
+        }
+        Project_Task__c record = new Project_Task__c(Id = taskId, Task_Status__c = status);
+        try {
+            update record;
+        } catch (DmlException e) {
+            throw new AuraHandledException('Failed to update task status: ' + e.getMessage());
+        }
+
+        Project_Task__c refreshed = [
+            SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
+                   Task_Handler__c, Task_Status__c
+            FROM Project_Task__c
+            WHERE Id = :record.Id
+            LIMIT 1
+        ];
+        return toDTO(refreshed);
+    }
+
+    /**
+     * Updates a task's assigned project field
+     */
+    @AuraEnabled
+    public static TaskDTO updateTaskAssignedProject(Id taskId, Id assignedProjectId) {
+        if (taskId == null) {
+            throw new AuraHandledException('Task id is required.');
+        }
+        Project_Task__c record = new Project_Task__c(Id = taskId, Assigned_Project__c = assignedProjectId);
+        try {
+            update record;
+        } catch (DmlException e) {
+            throw new AuraHandledException('Failed to update task assigned project: ' + e.getMessage());
         }
 
         Project_Task__c refreshed = [

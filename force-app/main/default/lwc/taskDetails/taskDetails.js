@@ -1,6 +1,11 @@
 import { LightningElement, api, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import updateTask from '@salesforce/apex/ProjectBoardService.updateTask';
+import updateTaskName from '@salesforce/apex/ProjectBoardService.updateTaskName';
+import updateTaskDescription from '@salesforce/apex/ProjectBoardService.updateTaskDescription';
+import updateTaskCompletionDate from '@salesforce/apex/ProjectBoardService.updateTaskCompletionDate';
+import updateTaskHandler from '@salesforce/apex/ProjectBoardService.updateTaskHandler';
+import updateTaskStatus from '@salesforce/apex/ProjectBoardService.updateTaskStatus';
+import updateTaskAssignedProject from '@salesforce/apex/ProjectBoardService.updateTaskAssignedProject';
 
 const HANDLER_OPTIONS = [
     { value: 'Internal', label: 'Internal', variant: 'neutral' },
@@ -167,17 +172,52 @@ export default class TaskDetails extends LightningElement {
         }
 
         const commit = () => {
-            const payload = {
-                id: this.task.id,
-                name: fieldName === 'name' ? value : this.task.name,
-                taskDescription: fieldName === 'taskDescription' ? value : this.task.taskDescription,
-                completionDate: fieldName === 'completionDate' ? value : this.task.completionDate,
-                assignedProjectId: this.task.assignedProjectId,
-                taskHandler: fieldName === 'taskHandler' ? value : this.task.taskHandler,
-                taskStatus: fieldName === 'taskStatus' ? value : this.task.taskStatus
-            };
+            let apexMethod;
+            let params;
             
-            updateTask(payload)
+            // Select the appropriate Apex method based on the field being updated
+            switch(fieldName) {
+                case 'name':
+                    apexMethod = updateTaskName;
+                    params = { taskId: this.task.id, name: value };
+                    break;
+                case 'taskDescription':
+                    apexMethod = updateTaskDescription;
+                    params = { taskId: this.task.id, description: value };
+                    break;
+                case 'completionDate':
+                    apexMethod = updateTaskCompletionDate;
+                    params = { taskId: this.task.id, completionDate: value };
+                    break;
+                case 'taskHandler':
+                    apexMethod = updateTaskHandler;
+                    params = { taskId: this.task.id, handler: value };
+                    break;
+                case 'taskStatus':
+                    apexMethod = updateTaskStatus;
+                    params = { taskId: this.task.id, status: value };
+                    break;
+                case 'assignedProjectId':
+                    apexMethod = updateTaskAssignedProject;
+                    params = { taskId: this.task.id, assignedProjectId: value };
+                    break;
+                default:
+                    // If we don't recognize the field, fall back to the old behavior
+                    // This shouldn't happen in our current implementation
+                    const payload = {
+                        id: this.task.id,
+                        name: fieldName === 'name' ? value : this.task.name,
+                        taskDescription: fieldName === 'taskDescription' ? value : this.task.taskDescription,
+                        completionDate: fieldName === 'completionDate' ? value : this.task.completionDate,
+                        assignedProjectId: this.task.assignedProjectId,
+                        taskHandler: fieldName === 'taskHandler' ? value : this.task.taskHandler,
+                        taskStatus: fieldName === 'taskStatus' ? value : this.task.taskStatus
+                    };
+                    apexMethod = updateTask;
+                    params = payload;
+            }
+            
+            apexMethod(params)
                 .then((serverTask) => {
                     // Let parent reconcile canonical server state
                     this.dispatchEvent(
