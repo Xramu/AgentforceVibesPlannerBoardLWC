@@ -1,0 +1,24 @@
+<template>
+    <section class="slds-card task-calendar" ondragover={allowDrop} ondrop={handleDropOnCalendar}>
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-horizontal_small slds-p-vertical_x-small">
+            <h2 class="slds-card__header-title slds-text-title_caps">Task Calendar</h2>
+            <div class="slds-text-body_small slds-text-color_weak">Year: {year}</div>
+        </div>
+
+        <div class="slds-card__body slds-p-around_x-small">
+            <div class="weeks-grid">
+                <template for:each={weeks} for:item="w">
+                    <c-week-cell
+                        key={w.number}
+                        number={w.number}
+                        current={w.isCurrent}
+                        tasks={w.tasks}
+                        ontaskdrop={relayDrop}
+                        ontaskselect={relaySelect}
+                        ontaskdragstart={relayDragStart}
+                    ></c-week-cell>
+                </template>
+            </div>
+        </div>
+    </section>
+</template>

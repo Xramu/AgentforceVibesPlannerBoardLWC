@@ -1,0 +1,33 @@
+.week-cell {
+    border: 1px solid var(--lwc-colorBorder, #c9c9c9);
+    border-radius: 0.25rem;
+    background: var(--lwc-colorBackground, #ffffff);
+    min-height: 120px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.week-number {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--lwc-colorTextWeak, #3e3e3c);
+}
+
+.tasks-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.25rem;
+    gap: 0.25rem;
+    overflow-y: auto;
+    max-height: 100px;
+}
+
+.current-week {
+    background: #e8f3fe; /* Light blue for current week */
+    border-color: #0176d3; /* Blue border for current week */
+}

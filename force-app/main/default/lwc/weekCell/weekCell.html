@@ -1,0 +1,23 @@
+<template>
+    <div
+        class={cellClass}
+        ondragover={allowDrop}
+        ondrop={handleDrop}
+        onclick={handleSelect}
+    >
+        <div class="week-number">{number}</div>
+        <div class="tasks-container">
+            <template for:each={tasks} for:item="t">
+                <c-task-card
+                    key={t.id}
+                    id={t.id}
+                    name={t.name}
+                    task-handler={t.taskHandler}
+                    task-status={t.taskStatus}
+                    ontaskdragstart={relayDragStart}
+                    ontaskselect={relaySelect}
+                ></c-task-card>
+            </template>
+        </div>
+    </div>
+</template>

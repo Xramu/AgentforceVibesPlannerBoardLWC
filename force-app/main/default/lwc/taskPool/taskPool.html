@@ -1,0 +1,113 @@
+<template>
+    <section class="slds-card task-pool">
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-horizontal_small slds-p-vertical_x-small">
+            <h2 class="slds-card__header-title slds-text-title_caps">Task Pool</h2>
+        </div>
+        <div class="slds-card__body slds-p-around_x-small">
+            <div class="slds-grid slds-gutters status-columns">
+                <!-- Not Started -->
+                <div class="slds-col">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Not Started</div>
+                    <div class="col col-not-started" ondragstart={relayDragStart}>
+                        <template for:each={notStarted} for:item="t">
+                            <c-task-card
+                                key={t.id}
+                                id={t.id}
+                                name={t.name}
+                                task-handler={t.taskHandler}
+                                task-status={t.taskStatus}
+                                ontaskdragstart={relayDragStart}
+                                ontaskselect={relaySelect}
+                            ></c-task-card>
+                        </template>
+                    </div>
+                </div>
+                <!-- On Track -->
+                <div class="slds-col">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">On Track</div>
+                    <div class="col col-on-track" ondragstart={relayDragStart}>
+                        <template for:each={onTrack} for:item="t">
+                            <c-task-card
+                                key={t.id}
+                                id={t.id}
+                                name={t.name}
+                                task-handler={t.taskHandler}
+                                task-status={t.taskStatus}
+                                ontaskdragstart={relayDragStart}
+                                ontaskselect={relaySelect}
+                            ></c-task-card>
+                        </template>
+                    </div>
+                </div>
+                <!-- Late -->
+                <div class="slds-col">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Late</div>
+                    <div class="col col-late" ondragstart={relayDragStart}>
+                        <template for:each={late} for:item="t">
+                            <c-task-card
+                                key={t.id}
+                                id={t.id}
+                                name={t.name}
+                                task-handler={t.taskHandler}
+                                task-status={t.taskStatus}
+                                ontaskdragstart={relayDragStart}
+                                ontaskselect={relaySelect}
+                            ></c-task-card>
+                        </template>
+                    </div>
+                </div>
+                <!-- On Hold -->
+                <div class="slds-col">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">On Hold</div>
+                    <div class="col col-on-hold" ondragstart={relayDragStart}>
+                        <template for:each={onHold} for:item="t">
+                            <c-task-card
+                                key={t.id}
+                                id={t.id}
+                                name={t.name}
+                                task-handler={t.taskHandler}
+                                task-status={t.taskStatus}
+                                ontaskdragstart={relayDragStart}
+                                ontaskselect={relaySelect}
+                            ></c-task-card>
+                        </template>
+                    </div>
+                </div>
+                <!-- Completed -->
+                <div class="slds-col">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Completed</div>
+                    <div class="col col-completed" ondragstart={relayDragStart}>
+                        <template for:each={completed} for:item="t">
+                            <c-task-card
+                                key={t.id}
+                                id={t.id}
+                                name={t.name}
+                                task-handler={t.taskHandler}
+                                task-status={t.taskStatus}
+                                ontaskdragstart={relayDragStart}
+                                ontaskselect={relaySelect}
+                            ></c-task-card>
+                        </template>
+                    </div>
+                </div>
+                <!-- Closed, not Completed -->
+                <div class="slds-col">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Closed, not Completed</div>
+                    <div class="col col-closed" ondragstart={relayDragStart}>
+                        <template for:each={closedNotCompleted} for:item="t">
+                            <c-task-card
+                                key={t.id}
+                                id={t.id}
+                                name={t.name}
+                                task-handler={t.taskHandler}
+                                task-status={t.taskStatus}
+                                ontaskdragstart={relayDragStart}
+                                ontaskselect={relaySelect}
+                            ></c-task-card>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

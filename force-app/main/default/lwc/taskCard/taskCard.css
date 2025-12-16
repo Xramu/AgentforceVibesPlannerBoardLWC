@@ -1,0 +1,36 @@
+.task-card {
+    border-radius: 0.25rem;
+    border: 1px solid var(--lwc-colorBorder, #c9c9c9);
+    background: var(--lwc-colorBackground, #ffffff);
+    cursor: grab;
+    user-select: none;
+    display: block;
+    max-width: 100%;
+}
+
+.task-card:active {
+    cursor: grabbing;
+}
+
+.task-name {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Clip long task names */
+    font-weight: 600;
+}
+
+/* Handler colors */
+.handler-internal {
+    border-left: 6px solid #2e8540; /* Green */
+    background: #e6f4ea;
+}
+.handler-customer {
+    border-left: 6px solid #0176d3; /* Blue */
+    background: #e8f3fe;
+}
+.handler-other {
+    border-left: 6px solid #ffb75d; /* Yellow/Amber */
+    background: #fff7e6;
+}

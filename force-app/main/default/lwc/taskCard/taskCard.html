@@ -1,0 +1,11 @@
+<template>
+    <div
+        class={cardClass}
+        draggable="true"
+        ondragstart={handleDragStart}
+        onclick={handleSelect}
+        title={name}
+    >
+        <span class="task-name" data-id="name">{clippedName}</span>
+    </div>
+</template>

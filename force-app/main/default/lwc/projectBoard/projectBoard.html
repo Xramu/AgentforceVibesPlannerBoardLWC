@@ -1,0 +1,74 @@
+<template>
+    <article class="slds-card slds-m-around_medium board">
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-horizontal_small slds-p-vertical_x-small">
+            <div class="slds-media slds-media_center">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-utility-kanban" title="Project Management Board">
+                        <lightning-icon icon-name="utility:kanban" size="small"></lightning-icon>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title slds-text-heading_medium">Project Management Board</h2>
+                </div>
+            </div>
+
+            <div class="slds-button-group" role="group" aria-label="Year navigation">
+                <lightning-button
+                    variant="neutral"
+                    label={prevYearLabel}
+                    title="Previous year"
+                    icon-name="utility:chevronleft"
+                    icon-position="left"
+                    onclick={handlePrevYear}>
+                </lightning-button>
+                <div class="slds-text-title_bold slds-p-horizontal_medium slds-align_absolute-center year-title">
+                    {selectedYear}
+                </div>
+                <lightning-button
+                    variant="neutral"
+                    label={nextYearLabel}
+                    title="Next year"
+                    icon-name="utility:chevronright"
+                    icon-position="right"
+                    onclick={handleNextYear}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <div class="slds-card__body slds-p-around_small">
+            <div class="slds-grid slds-gutters board-sections">
+                <!-- Task Pool (left) -->
+                <div class="slds-col slds-size_1-of-4 slds-medium-size_1-of-4 slds-large-size_1-of-4 pool-col">
+                    <c-task-pool
+                        tasks={poolTasks}
+                        ontaskdragstart={handleTaskDragStart}
+                        ontaskselect={handleTaskSelect}>
+                    </c-task-pool>
+                </div>
+
+                <!-- Calendar (center) -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-2 slds-large-size_1-of-2 calendar-col">
+                    <c-task-calendar
+                        year={selectedYear}
+                        week-count={weekCount}
+                        dated-tasks={datedTasks}
+                        current-week={currentWeek}
+                        ontaskdrop={handleCalendarDrop}
+                        ontaskselect={handleTaskSelect}
+                        ontaskreweek={handleTaskReweek}>
+                    </c-task-calendar>
+                </div>
+
+                <!-- Details (right) -->
+                <div class="slds-col slds-size_1-of-4 slds-medium-size_1-of-4 slds-large-size_1-of-4 details-col">
+                    <c-task-details
+                        task={selectedTask}
+                        ontaskchange={handleTaskChange}
+                        onmoveback={handleMoveBack}
+                        onmoveforward={handleMoveForward}>
+                    </c-task-details>
+                </div>
+            </div>
+        </div>
+    </article>
+</template>

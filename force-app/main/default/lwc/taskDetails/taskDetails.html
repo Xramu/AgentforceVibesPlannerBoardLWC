@@ -1,0 +1,95 @@
+<template>
+    <section class="slds-card task-details">
+        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-horizontal_small slds-p-vertical_x-small">
+            <h2 class="slds-card__header-title slds-text-title_caps">Task Details</h2>
+        </div>
+
+        <div class="slds-card__body slds-p-around_x-small">
+            <template if:true={task}>
+                <!-- Name -->
+                <lightning-input
+                    label="Task Name"
+                    value={task.name}
+                    onchange={handleChangeName}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+
+                <!-- Description -->
+                <lightning-textarea
+                    label="Task Description"
+                    value={task.taskDescription}
+                    onchange={handleChangeDescription}
+                    class="slds-m-bottom_small"
+                ></lightning-textarea>
+
+                <!-- Completion Date -->
+                <lightning-datepicker
+                    label="Completion Date"
+                    value={task.completionDate}
+                    onchange={handleChangeCompletionDate}
+                    class="slds-m-bottom_small"
+                ></lightning-datepicker>
+
+                <!-- Task Handler Buttons -->
+                <div class="slds-m-bottom_small">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Task Handler</div>
+                    <div class="slds-grid slds-gutters_x-small">
+                        <template for:each={handlerOptions} for:item="option">
+                            <div key={option.value} class="slds-col">
+                                <lightning-button
+                                    label={option.label}
+                                    variant={option.variant}
+                                    onclick={handleHandlerChange}
+                                    data-value={option.value}
+                                    class="handler-btn"
+                                ></lightning-button>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Task Status Buttons -->
+                <div class="slds-m-bottom_small">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Task Status</div>
+                    <div class="slds-grid slds-gutters_x-small">
+                        <template for:each={statusOptions} for:item="option">
+                            <div key={option.value} class="slds-col">
+                                <lightning-button
+                                    label={option.label}
+                                    variant={option.variant}
+                                    onclick={handleStatusChange}
+                                    data-value={option.value}
+                                    class="status-btn"
+                                ></lightning-button>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="slds-grid slds-gutters_x-small slds-m-top_small">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-button
+                            label="Move Back"
+                            variant="neutral"
+                            onclick={handleMoveBack}
+                            disabled={noDate}
+                        ></lightning-button>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-button
+                            label="Move Forward"
+                            variant="neutral"
+                            onclick={handleMoveForward}
+                            disabled={noDate}
+                        ></lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={task}>
+                <p class="slds-text-body_small slds-text-color_weak">No task selected</p>
+            </template>
+        </div>
+    </section>
+</template>
