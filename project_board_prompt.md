@@ -58,6 +58,8 @@ Each week's box should have the week number written inside them on the top left 
 All the tasks that have their Completion Date set to that year should be shown inside the box of the week the date belongs to.
 If there are multiple tasks inside a single week, stack them vertically inside the week's box.
 
+Tasks inside the weeks should be able to be dragged and dropped into other weeks, keeping their time and day of the week same. Update the date on the record whenever dragged to a different week. Update the UI to show the change immideately.
+
 A navigation bar displaying the currently selected year is located at the top of the task calendar window.
 The year to show should be the current year by default.
 On the left side of the navigation bar should be an arrow button with the previous year as the label.
