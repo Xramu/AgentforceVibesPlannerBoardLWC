@@ -1,4 +1,5 @@
 [
     { "sobject": "Project__c", "files": ["projects.json"]},
-    { "sobject": "Project_Task__c", "files": ["project_tasks_metro.json"]}
+    { "sobject": "Project_Task__c", "files": ["project_tasks_metro.json"]},
+    { "sobject": "Project_Task__c", "files": ["project_tasks_tram.json"]}
 ]

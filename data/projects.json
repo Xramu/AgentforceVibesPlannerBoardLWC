@@ -4,6 +4,16 @@
             "attributes": { "type": "Project__c", "referenceId": "project_metro"},
             "Name": "Metro Maintenance",
             "Project_Description__c": "Project for the maintenance of the local metro cars."
+        },
+        {
+            "attributes": { "type": "Project__c", "referenceId": "project_bus"},
+            "Name": "Bus Maintenance",
+            "Project_Description__c": "Project for the maintenance of the local public busses."
+        },
+        {
+            "attributes": { "type": "Project__c", "referenceId": "project_tram"},
+            "Name": "Tram Maintenance",
+            "Project_Description__c": "Project for the maintenance of the local trams."
         }
     ]
 }

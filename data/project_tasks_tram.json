@@ -1,0 +1,94 @@
+{
+    "records": [
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_001"},
+            "Name": "T-01 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "3000",
+            "Completion_Date__c": "2026-01-25",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_002"},
+            "Name": "T-02 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "4500",
+            "Completion_Date__c": "2026-11-05",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_003"},
+            "Name": "T-03 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Other",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "2500",
+            "Completion_Date__c": "2026-10-17",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_004"},
+            "Name": "T-04 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "1500",
+            "Completion_Date__c": "2026-12-09",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_005"},
+            "Name": "T-05 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "500",
+            "Completion_Date__c": "2026-03-17",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_006"},
+            "Name": "T-06 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "5500",
+            "Completion_Date__c": "2026-02-17",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_007"},
+            "Name": "T-07 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "6500",
+            "Completion_Date__c": "2026-01-21",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_008"},
+            "Name": "T-08 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "2500",
+            "Completion_Date__c": "2026-01-28",
+            "Assigned_Project__c": "@project_tram"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "tram_task_009"},
+            "Name": "T-09 Maintenance",
+            "Task_Description__c": "Perform the needed maintenance on the tram unit.",
+            "Task_Handler__c": "Internal",
+            "Task_Status__c": "Not Started",
+            "Estimated_Cost__c": "1000",
+            "Completion_Date__c": "2026-07-01",
+            "Assigned_Project__c": "@project_tram"
+        }
+    ]
+}
