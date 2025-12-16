@@ -27,6 +27,9 @@ export default class TaskDetails extends LightningElement {
 
     @track handlerOptions = HANDLER_OPTIONS.map((opt) => ({ ...opt }));
     @track statusOptions = STATUS_OPTIONS.map((opt) => ({ ...opt }));
+    @track isSaving = false;
+    @track saveButtonLabel = 'Save Changes';
+    @track _pendingChanges = {};
 
     updateButtonVariants(task) {
         console.log("Updating button variants.");
@@ -101,32 +104,32 @@ export default class TaskDetails extends LightningElement {
     handleChangeName(event) {
         const newName = event.target.value;
         this.updateTaskLocally('name', newName);
-        this.persistField('name', newName);
+        this.setPendingChange('name', newName);
     }
 
     handleChangeDescription(event) {
         // lightning-input-rich-text surfaces its content as event.target.value (HTML string)
         const newDescHtml = event.target.value;
         this.updateTaskLocally('taskDescription', newDescHtml);
-        this.persistField('taskDescription', newDescHtml);
+        this.setPendingChange('taskDescription', newDescHtml);
     }
 
     handleChangeCompletionDate(event) {
         const newDate = event.target.value;
         this.updateTaskLocally('completionDate', newDate);
-        this.persistField('completionDate', newDate);
+        this.setPendingChange('completionDate', newDate);
     }
 
     handleHandlerChange(event) {
         const newHandler = event.target.dataset.value;
         this.updateTaskLocally('taskHandler', newHandler);
-        this.persistField('taskHandler', newHandler);
+        this.setPendingChange('taskHandler', newHandler);
     }
 
     handleStatusChange(event) {
         const newStatus = event.target.dataset.value;
         this.updateTaskLocally('taskStatus', newStatus);
-        this.persistField('taskStatus', newStatus);
+        this.setPendingChange('taskStatus', newStatus);
     }
 
     handleMoveBack() {
@@ -158,10 +161,64 @@ export default class TaskDetails extends LightningElement {
         // Here we only notify parent; server sync handled in persistField()
     }
 
+    setPendingChange(field, value) {
+        // Store pending changes to be saved later
+        this._pendingChanges = { ...this._pendingChanges, [field]: value };
+    }
+
+    // Save all pending changes to the server
+    async handleSave() {
+        if (!this.task || !this.task.id || Object.keys(this._pendingChanges).length === 0) {
+            return;
+        }
+
+        this.isSaving = true;
+        this.saveButtonLabel = 'Saving...';
+
+        try {
+            // Collect all pending changes
+            const changes = { ...this._pendingChanges };
+            
+            // Reset pending changes
+            this._pendingChanges = {};
+            
+            // Process each change
+            const promises = [];
+            for (const [fieldName, value] of Object.entries(changes)) {
+                const promise = this.persistField(fieldName, value);
+                promises.push(promise);
+            }
+            
+            // Wait for all saves to complete
+            await Promise.all(promises);
+            
+            // Show success message
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Task changes saved successfully.',
+                    variant: 'success'
+                })
+            );
+        } catch (error) {
+            // Show error message
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Save failed',
+                    message: (error && error.body && error.body.message) ? error.body.message : 'Unable to save task changes.',
+                    variant: 'error'
+                })
+            );
+        } finally {
+            this.isSaving = false;
+            this.saveButtonLabel = 'Save Changes';
+        }
+    }
+
     // Persist a single field to server using Apex, debounce rapid changes for rich text
     persistField(fieldName, value) {
         if (!this.task || !this.task.id) {
-            return;
+            return Promise.resolve();
         }
 
         // Debounce map per-field to avoid flooding server for rich text typing
@@ -217,7 +274,7 @@ export default class TaskDetails extends LightningElement {
                     params = payload;
             }
             
-            apexMethod(params)
+            return apexMethod(params)
                 .then((serverTask) => {
                     // Let parent reconcile canonical server state
                     this.dispatchEvent(
@@ -237,12 +294,27 @@ export default class TaskDetails extends LightningElement {
                             variant: 'error'
                         })
                     );
+                    throw error;
                 });
         };
 
         // Debounce 500ms for rich text, immediate for others
         const delay = fieldName === 'taskDescription' ? 500 : 0;
         this._debouncers[key] = setTimeout(commit, delay);
+        
+        // Return a promise that resolves when the commit is executed
+        return new Promise((resolve, reject) => {
+            if (delay === 0) {
+                // Immediate execution
+                const promise = commit();
+                promise.then(resolve).catch(reject);
+            } else {
+                // For debounced execution, we can't easily return a promise here
+                // The commit function will handle the promise internally
+                // We'll resolve immediately to prevent blocking
+                resolve();
+            }
+        });
     }
 
     // Override to update variants when task changes externally

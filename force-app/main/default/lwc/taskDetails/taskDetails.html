@@ -6,6 +6,18 @@
 
         <div class="slds-card__body slds-p-around_x-small">
             <template if:true={task}>
+                <!-- Save Button -->
+                <div class="slds-m-bottom_small">
+                    <button
+                        type="button"
+                        class="custom-save-button"
+                        onclick={handleSave}
+                        disabled={isSaving}
+                    >
+                        {saveButtonLabel}
+                    </button>
+                </div>
+
                 <!-- Name -->
                 <lightning-input
                     label="Task Name"
