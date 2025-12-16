@@ -41,7 +41,8 @@ export default class ProjectBoard extends LightningElement {
                 ...t,
                 week: this.getWeekFromDateString(t.completionDate)
             }));
-            this.poolTasks = data.undatedTasks || [];
+            // Combine both dated and undated tasks for the pool
+            this.poolTasks = [...(data.undatedTasks || []), ...(data.datedTasks || [])];
         } else if (error) {
             // non-blocking for PoC; log and keep UI usable
             // eslint-disable-next-line no-console
