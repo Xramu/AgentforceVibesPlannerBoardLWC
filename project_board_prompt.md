@@ -25,11 +25,11 @@ Task Handler Colors:
 - `Other` = Yellow
 
 Task Status Colors:
-- `Not Started` = Gray.
-- `On Track` = Light Green.
-- `Late` = Red.
-- `Completed` = Green.
-- `Closed, not Completed` = Yellow.
+- `Not Started` = Gray
+- `On Track` = Light Green
+- `Late` = Red
+- `Completed` = Green
+- `Closed, not Completed` = Yellow
 
 ## Task Item Specifications
 
