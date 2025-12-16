@@ -25,38 +25,6 @@
                     </div>
                 </div>
 
-                <!-- Navigation Buttons -->
-                <div class="slds-grid slds-gutters_x-small slds-m-top_small">
-                    <div class="slds-col slds-size_1-of-2">
-                        <button
-                            type="button"
-                            class="custom-button nav-btn-back"
-                            onclick={handleMoveBack}
-                            disabled={noDate}
-                        >
-                            Move Back
-                        </button>
-                    </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        <button
-                            type="button"
-                            class="custom-button nav-btn-forward"
-                            onclick={handleMoveForward}
-                            disabled={noDate}
-                        >
-                            Move Forward
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Completion Date -->
-                <lightning-datepicker
-                    label="Completion Date"
-                    value={task.completionDate}
-                    onchange={handleChangeCompletionDate}
-                    class="slds-m-bottom_small"
-                ></lightning-datepicker>
-
                 <!-- Name -->
                 <lightning-input
                     label="Task Name"
@@ -85,6 +53,38 @@
                     onblur={handleSave}
                     class="slds-m-bottom_small"
                 ></lightning-input-rich-text>
+
+                <!-- Completion Date -->
+                <lightning-datepicker
+                    label="Completion Date"
+                    value={task.completionDate}
+                    onchange={handleChangeCompletionDate}
+                    class="slds-m-bottom_small"
+                ></lightning-datepicker>
+                
+                <!-- Navigation Buttons -->
+                <div class="slds-grid slds-gutters_x-small slds-m-top_small">
+                    <div class="slds-col slds-size_1-of-2">
+                        <button
+                            type="button"
+                            class="custom-button nav-btn-back"
+                            onclick={handleMoveBack}
+                            disabled={noDate}
+                        >
+                            Move Back
+                        </button>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <button
+                            type="button"
+                            class="custom-button nav-btn-forward"
+                            onclick={handleMoveForward}
+                            disabled={noDate}
+                        >
+                            Move Forward
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Task Status Buttons -->
                 <!-- <div class="slds-m-bottom_small">
