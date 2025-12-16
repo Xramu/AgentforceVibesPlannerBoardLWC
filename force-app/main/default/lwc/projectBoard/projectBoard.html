@@ -40,7 +40,7 @@
                 <!-- Task Pool (left) -->
                 <div class="slds-col slds-size_1-of-4 slds-medium-size_1-of-4 slds-large-size_1-of-4 pool-col">
                     <c-task-pool
-                        tasks={poolTasks}
+                        tasks={allTasks}
                         ontaskdragstart={handleTaskDragStart}
                         ontaskselect={handleTaskSelect}>
                     </c-task-pool>
@@ -51,7 +51,7 @@
                     <c-task-calendar
                         year={selectedYear}
                         week-count={weekCount}
-                        dated-tasks={datedTasks}
+                        dated-tasks={allTasks}
                         current-week={currentWeek}
                         ontaskdrop={handleCalendarDrop}
                         ontaskselect={handleTaskSelect}

@@ -9,8 +9,7 @@ export default class ProjectBoard extends LightningElement {
     @track currentWeek = null;
 
     // Data model in-memory
-    @track datedTasks = []; // tasks having a date
-    @track poolTasks = []; // tasks without a date
+    @track allTasks = []; // all tasks combined
     @track selectedTask = null;
 
     // drag payload
@@ -37,12 +36,14 @@ export default class ProjectBoard extends LightningElement {
         if (data) {
             this.weekCount = data.weekCount;
             // normalize DTOs for UI
-            this.datedTasks = (data.datedTasks || []).map((t) => ({
-                ...t,
-                week: this.getWeekFromDateString(t.completionDate)
-            }));
-            // Combine both dated and undated tasks for the pool
-            this.poolTasks = [...(data.undatedTasks || []), ...(data.datedTasks || [])];
+            const allTasks = (data.datedTasks || []).concat(data.undatedTasks || []).map((t) => {
+                const task = { ...t };
+                if (task.completionDate) {
+                    task.week = this.getWeekFromDateString(task.completionDate);
+                }
+                return task;
+            });
+            this.allTasks = allTasks;
         } else if (error) {
             // non-blocking for PoC; log and keep UI usable
             // eslint-disable-next-line no-console
@@ -171,68 +172,45 @@ export default class ProjectBoard extends LightningElement {
 
     snapshotState() {
         return {
-            datedTasks: JSON.parse(JSON.stringify(this.datedTasks)),
-            poolTasks: JSON.parse(JSON.stringify(this.poolTasks)),
+            allTasks: JSON.parse(JSON.stringify(this.allTasks)),
             selectedTaskId: this.selectedTask ? this.selectedTask.id : null
         };
     }
 
     restoreState(state) {
-        this.datedTasks = state.datedTasks;
-        this.poolTasks = state.poolTasks;
+        this.allTasks = state.allTasks;
         this.selectedTask = state.selectedTaskId ? this.findTaskById(state.selectedTaskId) : null;
     }
 
     findTaskById(id) {
-        return (
-            (this.datedTasks && this.datedTasks.find((t) => id.includes(t.id))) ||
-            (this.poolTasks && this.poolTasks.find((t) => id.includes(t.id)))
-        );
+        return this.allTasks.find((t) => id.includes(t.id));
     }
 
     mergeServerTask(serverTask) {
         if (!serverTask || !serverTask.id) return;
         
-        // Find the task in datedTasks or poolTasks
-        let taskIndexInDated = -1;
-        let taskIndexInPool = -1;
-        
-        if (this.datedTasks && this.datedTasks.length > 0) {
-            taskIndexInDated = this.datedTasks.findIndex((t) => t.id === serverTask.id);
-        }
-        
-        if (this.poolTasks && this.poolTasks.length > 0) {
-            taskIndexInPool = this.poolTasks.findIndex((t) => t.id === serverTask.id);
-        }
+        // Find the task in allTasks
+        const taskIndex = this.allTasks.findIndex((t) => t.id === serverTask.id);
         
         // Update the task in-place if it exists
-        if (taskIndexInDated !== -1) {
-            // Task exists in datedTasks, update it
-            const updatedTask = { ...this.datedTasks[taskIndexInDated], ...serverTask };
+        if (taskIndex !== -1) {
+            // Task exists, update it
+            const updatedTask = { ...this.allTasks[taskIndex], ...serverTask };
             if (serverTask.completionDate) {
                 updatedTask.week = this.getWeekFromDateString(serverTask.completionDate);
             }
-            this.datedTasks = [
-                ...this.datedTasks.slice(0, taskIndexInDated),
+            this.allTasks = [
+                ...this.allTasks.slice(0, taskIndex),
                 updatedTask,
-                ...this.datedTasks.slice(taskIndexInDated + 1)
-            ];
-        } else if (taskIndexInPool !== -1) {
-            // Task exists in poolTasks, update it
-            const updatedTask = { ...this.poolTasks[taskIndexInPool], ...serverTask };
-            this.poolTasks = [
-                ...this.poolTasks.slice(0, taskIndexInPool),
-                updatedTask,
-                ...this.poolTasks.slice(taskIndexInPool + 1)
+                ...this.allTasks.slice(taskIndex + 1)
             ];
         } else {
-            // Task doesn't exist in either list, add it based on completionDate
+            // Task doesn't exist, add it
+            const taskToAdd = { ...serverTask };
             if (serverTask.completionDate) {
-                const week = this.getWeekFromDateString(serverTask.completionDate);
-                this.datedTasks = [...this.datedTasks, { ...serverTask, week }];
-            } else {
-                this.poolTasks = [...this.poolTasks, { ...serverTask }];
+                taskToAdd.week = this.getWeekFromDateString(serverTask.completionDate);
             }
+            this.allTasks = [...this.allTasks, taskToAdd];
         }
 
         // refresh selectedTask if it was the one
@@ -242,34 +220,35 @@ export default class ProjectBoard extends LightningElement {
     }
 
     applyTaskMoveToWeek(taskId, weekNumber) {
-        // Remove from pool and add to dated with synthetic date string of Monday (visual placeholder)
-        const task = this.poolTasks.find((t) => t.id === taskId);
+        // Remove from allTasks and add to dated with synthetic date string of Monday (visual placeholder)
+        const task = this.allTasks.find((t) => t.id === taskId);
         if (!task) return;
-        this.poolTasks = this.poolTasks.filter((t) => t.id !== taskId);
+        this.allTasks = this.allTasks.filter((t) => t.id !== taskId);
         const monday = this.isoWeekMondayDate(this.selectedYear, weekNumber);
-        this.datedTasks = [...this.datedTasks, { ...task, completionDate: this.toDateString(monday), week: weekNumber }];
+        const newTask = { ...task, completionDate: this.toDateString(monday), week: weekNumber };
+        this.allTasks = [...this.allTasks, newTask];
     }
 
     applyTaskReweek(taskId, dateString, newWeek) {
-        const task = this.datedTasks.find((t) => t.id === taskId);
+        const task = this.allTasks.find((t) => t.id === taskId);
         if (!task) return;
         // Replace with new week and placeholder date on Monday; server will finalize
         const monday = this.isoWeekMondayDate(this.selectedYear, newWeek);
         const updated = { ...task, completionDate: this.toDateString(monday), week: newWeek };
-        this.datedTasks = [...this.datedTasks.filter((t) => t.id !== taskId), updated];
+        this.allTasks = [...this.allTasks.filter((t) => t.id !== taskId), updated];
         if (this.selectedTask && this.selectedTask.id === taskId) {
             this.selectedTask = updated;
         }
     }
 
     applyShiftWeeks(taskId, weeks) {
-        const inDated = this.datedTasks.find((t) => t.id === taskId);
+        const inDated = this.allTasks.find((t) => t.id === taskId);
         if (!inDated) return;
         const date = this.fromDateString(inDated.completionDate);
         const shifted = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7 * weeks);
         const newWeek = this.computeIsoWeek(shifted);
         const updated = { ...inDated, completionDate: this.toDateString(shifted), week: newWeek };
-        this.datedTasks = [...this.datedTasks.filter((t) => t.id !== taskId), updated];
+        this.allTasks = [...this.allTasks.filter((t) => t.id !== taskId), updated];
         if (this.selectedTask && this.selectedTask.id === taskId) {
             this.selectedTask = updated;
         }

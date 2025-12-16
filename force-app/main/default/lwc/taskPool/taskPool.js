@@ -4,6 +4,12 @@ import { LightningElement, api } from 'lwc';
 export default class TaskPool extends LightningElement {
     @api tasks = [];
 
+    // Filter tasks that have no completion date (undated tasks)
+    get undatedTasks() {
+        const items = Array.isArray(this.tasks) ? this.tasks : [];
+        return items.filter((t) => !t.completionDate);
+    }
+
     // Grouping by handler, ordered sections: Other, Internal, Customer
     get otherTasks() {
         return this.byHandler('Other');
@@ -29,7 +35,7 @@ export default class TaskPool extends LightningElement {
     byHandler(handler) {
         const items = Array.isArray(this.tasks) ? this.tasks : [];
         const key = handler;
-        return items.filter((t) => t.taskHandler && t.taskHandler.trim() === key);
+        return items.filter((t) => t.completionDate && t.taskHandler && t.taskHandler.trim() === key);
     }
 
     // Relay child events upward so container can manage state

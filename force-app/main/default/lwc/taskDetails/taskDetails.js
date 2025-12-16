@@ -33,9 +33,6 @@ export default class TaskDetails extends LightningElement {
     @track _pendingChanges = {};
 
     updateButtonVariants(task) {
-        console.log("Updating button variants.");
-        console.log("Task:", this.task);
-
         this.task ??= task;
         if (!this.task) return;
         
@@ -57,8 +54,6 @@ export default class TaskDetails extends LightningElement {
             if (isSelected) {
                 className += ' slds-button_brand';
             }
-
-            console.log(className);
             
             return {
                 ...opt,
@@ -339,9 +334,7 @@ export default class TaskDetails extends LightningElement {
 
     // Override to update variants when task changes externally
     updated(changedProperties) {
-        console.log("Updated called with properties:", Array.from(changedProperties.keys()));
         if (changedProperties.has('task')) {
-            console.log("Task property changed, updating button variants");
             this.updateButtonVariants();
         }
     }
@@ -350,7 +343,6 @@ export default class TaskDetails extends LightningElement {
     rendered() {
         // Force update button variants when component is rendered
         // This acts as a fallback mechanism
-        console.log("Rendered - checking if we need to update button variants");
         if (this.task) {
             this.updateButtonVariants();
         }
@@ -359,7 +351,6 @@ export default class TaskDetails extends LightningElement {
     // Expose a method to manually trigger button variant updates
     // This can be called from parent components when needed
     @api refreshButtonVariants(task) {
-        console.log("Manually refreshing button variants");
         this.updateButtonVariants(task);
     }
 }

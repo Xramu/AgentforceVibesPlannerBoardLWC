@@ -33,7 +33,7 @@ export default class TaskCalendar extends LightningElement {
 
     tasksForWeek(weekNumber) {
         const items = Array.isArray(this.datedTasks) ? this.datedTasks : [];
-        return items.filter((t) => t.week === weekNumber);
+        return items.filter((t) => t.week === weekNumber && t.completionDate);
     }
 
     // Native DnD: allow drop on the calendar container (fallback if a week doesn't catch)
