@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task_Status__c</fullName>
+    <defaultValue>&quot;Not Started&quot;</defaultValue>
+    <description>Status of the progress on this task.</description>
+    <inlineHelpText>Status of the progress on this task.</inlineHelpText>
+    <label>Task Status</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Task_Status_Options</valueSetName>
+    </valueSet>
+</CustomField>
