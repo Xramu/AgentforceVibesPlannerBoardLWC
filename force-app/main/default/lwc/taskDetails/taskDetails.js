@@ -99,8 +99,9 @@ export default class TaskDetails extends LightningElement {
     }
 
     handleChangeDescription(event) {
-        const newDesc = event.target.value;
-        this.updateTaskLocally('taskDescription', newDesc);
+        // lightning-input-rich-text also surfaces its content as event.target.value (HTML string)
+        const newDescHtml = event.target.value;
+        this.updateTaskLocally('taskDescription', newDescHtml);
     }
 
     handleChangeCompletionDate(event) {

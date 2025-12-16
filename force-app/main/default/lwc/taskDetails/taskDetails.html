@@ -14,14 +14,6 @@
                     class="slds-m-bottom_small"
                 ></lightning-input>
 
-                <!-- Description -->
-                <lightning-textarea
-                    label="Task Description"
-                    value={task.taskDescription}
-                    onchange={handleChangeDescription}
-                    class="slds-m-bottom_small"
-                ></lightning-textarea>
-
                 <!-- Completion Date -->
                 <lightning-datepicker
                     label="Completion Date"
@@ -29,6 +21,15 @@
                     onchange={handleChangeCompletionDate}
                     class="slds-m-bottom_small"
                 ></lightning-datepicker>
+
+                <!-- Description (Rich Text) -->
+                <lightning-input-rich-text
+                    label="Task Description"
+                    label-visible
+                    value={task.taskDescription}
+                    onchange={handleChangeDescription}
+                    class="slds-m-bottom_small"
+                ></lightning-input-rich-text>
 
                 <!-- Task Handler Buttons -->
                 <div class="slds-m-bottom_small">
