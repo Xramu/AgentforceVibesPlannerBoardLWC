@@ -1,5 +1,7 @@
 .slds-card__header {
     align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 
 .project-selector-container {
@@ -27,4 +29,43 @@
 /* Additional styling to prevent stretching */
 .slds-combobox_container .slds-combobox {
     max-width: 300px;
+}
+
+/* Fix for left-aligned title row */
+.slds-card__header-title {
+    flex: 0 0 auto;
+}
+
+.slds-grid {
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+}
+
+.slds-grid > * {
+    flex: 0 0 auto !important;
+}
+
+.year-title {
+    flex: 0 0 auto;
+}
+
+/* Add spacing between elements */
+.slds-card__header > *:not(:last-child) {
+    margin-right: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slds-card__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .slds-card__header > * {
+        margin-bottom: 0.5rem;
+    }
+    
+    .slds-card__header > *:not(:last-child) {
+        margin-right: 0;
+    }
 }

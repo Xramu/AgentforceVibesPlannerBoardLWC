@@ -1,6 +1,6 @@
 <template>
     <article class="slds-card slds-m-around_medium board">
-        <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-horizontal_small slds-p-vertical_x-small">
+        <div class="slds-card__header slds-grid slds-p-horizontal_small slds-p-vertical_x-small">
             <div class="slds-media slds-media_center">
                 <div class="slds-media__figure">
                     <span class="slds-icon_container slds-icon-utility-kanban" title="Project Management Board">
@@ -14,7 +14,7 @@
 
             <div class="project-selector-container">
                     <lightning-combobox
-                        label="Select Project"
+                        label="Filter By Project"
                         name="projectSelector"
                         value={selectedProjectId}
                         options={projects}
@@ -23,29 +23,27 @@
                     </lightning-combobox>
                 </div>
 
-            <div class="slds-grid slds-gutters slds-wrap">
-                <div class="slds-col slds-size_1-of-2 slds-grid slds-grid_align-end">
-                    <div class="slds-button-group" role="group" aria-label="Year navigation">
-                        <lightning-button
-                            variant="neutral"
-                            label={prevYearLabel}
-                            title="Previous year"
-                            icon-name="utility:chevronleft"
-                            icon-position="left"
-                            onclick={handlePrevYear}>
-                        </lightning-button>
-                        <div class="slds-text-title_bold slds-p-horizontal_medium slds-align_absolute-center year-title">
-                            {selectedYear}
-                        </div>
-                        <lightning-button
-                            variant="neutral"
-                            label={nextYearLabel}
-                            title="Next year"
-                            icon-name="utility:chevronright"
-                            icon-position="right"
-                            onclick={handleNextYear}>
-                        </lightning-button>
+            <div class="year-navigation-container">
+                <div class="slds-button-group" role="group" aria-label="Year navigation">
+                    <lightning-button
+                        variant="neutral"
+                        label={prevYearLabel}
+                        title="Previous year"
+                        icon-name="utility:chevronleft"
+                        icon-position="left"
+                        onclick={handlePrevYear}>
+                    </lightning-button>
+                    <div class="slds-text-title_bold slds-p-horizontal_medium year-title">
+                        {selectedYear}
                     </div>
+                    <lightning-button
+                        variant="neutral"
+                        label={nextYearLabel}
+                        title="Next year"
+                        icon-name="utility:chevronright"
+                        icon-position="right"
+                        onclick={handleNextYear}>
+                    </lightning-button>
                 </div>
             </div>
         </div>
