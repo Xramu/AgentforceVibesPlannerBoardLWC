@@ -17,16 +17,27 @@ Task Object:
 - `Task_Status__c` field is a picklist field that determines the task's current status.
     - Possible task status picklist values are `Not Started`, `On Track`, `Late`, `On Hold`, `Completed` and `Closed, not Completed`
 
+## Related Colors
+
+Task Handler Colors:
+- `Internal` = Green
+- `Customer` = Blue
+- `Other` = Yellow
+
+Task Status Colors:
+- `Not Started` = Gray.
+- `On Track` = Light Green.
+- `Late` = Red.
+- `Completed` = Green.
+- `Closed, not Completed` = Yellow.
+
 ## Task Item Specifications
 
 Task Item:
 Whenever a task is shown inside any of the windows inside the project management board component, make sure it can be visually differentiated from the other tasks.
 Show each task item as a box with its task name shown on a label.
 If the task name is too long, clip it to stop it from overflowing outside of its box.
-Color the task box based on the task's handler.
-If the task is handled by `Internal` the color should be Green.
-If the task is handled by `Customer` the color should be Blue.
-If the task is handled by `Other` the color should be Yellow.
+Color the task box based on its handler value by following the specified related colors
 
 ## Window Layout Specifications
 
@@ -72,6 +83,7 @@ Underneath the name, description and date field has a button row for each of the
 The row of buttons has a button for each possible value of the picklist field.
 The picklist item currently assigned to the task's field is highlighted in the button row.
 Clicking another button on the button row changes the task's picked value to that.
+Color the row of buttons for the Task Handler and the Task Status based on their related colors
 
 If no task is selected, the Task Details Window will be empty.
 Any changes done inside the Task Details Window will be saved to the Task object's record that is being shown.
