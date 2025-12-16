@@ -17,6 +17,17 @@ export default class ProjectBoard extends LightningElement {
     dragTaskId = null;
 
     connectedCallback() {
+        this.updateCurrentWeek();
+    }
+
+    // Recalculate current week when year changes
+    updated(changedProperties) {
+        if (changedProperties.has('selectedYear')) {
+            this.updateCurrentWeek();
+        }
+    }
+
+    updateCurrentWeek() {
         this.currentWeek = this.computeIsoWeek(new Date());
     }
 

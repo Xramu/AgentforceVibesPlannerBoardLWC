@@ -4,9 +4,11 @@ export default class WeekCell extends LightningElement {
     @api number;
     @api current = false;
     @api tasks = [];
+    @api currentYear; // The year this week belongs to
 
     get cellClass() {
         const base = 'week-cell slds-p-around_x-small slds-m-around_xx-small';
+        // Only highlight if this week is marked as current
         return this.current ? `${base} current-week` : base;
     }
 

@@ -9,14 +9,26 @@ export default class TaskCalendar extends LightningElement {
     get weeks() {
         const weeks = [];
         const count = this.weekCount || 52;
+        // Only mark the current week of the currently displayed year as current
+        // We need to compute what the current week is within this year
+        const currentWeekInThisYear = this.getCurrentWeekInThisYear();
         for (let i = 1; i <= count; i++) {
             weeks.push({
                 number: i,
-                isCurrent: i === this.currentWeek,
+                isCurrent: i === currentWeekInThisYear,
                 tasks: this.tasksForWeek(i)
             });
         }
         return weeks;
+    }
+
+    getCurrentWeekInThisYear() {
+        // If the current year we're viewing is the actual current year,
+        // then use the real current week. Otherwise, return null or 0 to not highlight
+        if (this.year === new Date().getFullYear()) {
+            return this.currentWeek;
+        }
+        return null; // Don't highlight any week for non-current years
     }
 
     tasksForWeek(weekNumber) {
