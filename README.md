@@ -24,3 +24,12 @@ The titles on each section has been changed to be a fitting example for a hardwa
 ## Environment Setup Guide
 
 [Resources for installing VSCode for Salesforce DX projects](https://developer.salesforce.com/docs/platform/sfvscode-extensions/overview)
+
+Once your environment is set up and ready for development:
+- Press Command + Shift + P and run the command `SFDX: Authorize an Org` to connect your Salesforce org.
+- Right click the `force-app` folder and select `SFDX: Deploy This Source to Org`
+- The `Project Board` custom component should be now available when editing Salesforce lightning apps.
+
+To show data on the board:
+- Create a new record or records of `Project__c` custom object.
+- Create a new record or records of `Project_Task__c` custom object and assign a project to each one.
