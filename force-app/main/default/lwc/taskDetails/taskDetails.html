@@ -64,7 +64,7 @@
                 
                 <!-- Navigation Buttons -->
                 <div class="slds-grid slds-gutters_x-small slds-m-top_small">
-                    <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-col slds-size_1-of-3">
                         <button
                             type="button"
                             class="custom-button nav-btn-back"
@@ -74,7 +74,17 @@
                             Move Back
                         </button>
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-col slds-size_1-of-3">
+                        <button
+                            type="button"
+                            class="custom-button record-btn"
+                            onclick={handleOpenRecord}
+                            disabled={noTask}
+                        >
+                            View Record
+                        </button>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
                         <button
                             type="button"
                             class="custom-button nav-btn-forward"

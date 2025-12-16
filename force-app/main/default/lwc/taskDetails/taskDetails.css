@@ -157,6 +157,18 @@
     border-color: #ea001e;
 }
 
+/* Record button colors */
+.record-btn {
+    border: 1px solid #0176d3;
+    background-color: #e8f3fe;
+    color: #0176d3;
+}
+
+.record-btn:hover {
+    background-color: #d0e7fc;
+    border-color: #0176d3;
+}
+
 
 
 /* Ensure proper spacing for button groups */
@@ -184,6 +196,7 @@
     align-items: center;
     justify-content: center;
 }
+
 
 /* Input field styling */
 .slds-form-element__control {

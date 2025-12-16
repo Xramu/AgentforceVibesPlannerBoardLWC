@@ -1,5 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { NavigationMixin } from 'lightning/navigation';
 import updateTaskName from '@salesforce/apex/ProjectBoardService.updateTaskName';
 import updateTaskDescription from '@salesforce/apex/ProjectBoardService.updateTaskDescription';
 import updateTaskCompletionDate from '@salesforce/apex/ProjectBoardService.updateTaskCompletionDate';
@@ -23,7 +24,7 @@ const STATUS_OPTIONS = [
     { value: 'Closed, not Completed', label: 'Closed', variant: 'neutral' }
 ];
 
-export default class TaskDetails extends LightningElement {
+export default class TaskDetails extends NavigationMixin(LightningElement) {
     @api task;
 
     @track handlerOptions = HANDLER_OPTIONS.map((opt) => ({ ...opt }));
@@ -94,6 +95,10 @@ export default class TaskDetails extends LightningElement {
 
     get noDate() {
         return !this.task || !this.task.completionDate;
+    }
+
+    get noTask() {
+        return !this.task;
     }
 
     // Computed label for Estimated Cost including currency code
@@ -346,5 +351,20 @@ export default class TaskDetails extends LightningElement {
     // This can be called from parent components when needed
     @api refreshButtonVariants(task) {
         this.updateButtonVariants(task);
+    }
+
+    handleOpenRecord() {
+        if (!this.task || !this.task.id) {
+            return;
+        }
+        
+        // Navigate to the record page in a new tab
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: this.task.id,
+                actionName: 'view'
+            }
+        }, true); // true = opens in new tab/window
     }
 }
