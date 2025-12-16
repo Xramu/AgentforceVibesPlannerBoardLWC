@@ -96,27 +96,32 @@ export default class TaskDetails extends LightningElement {
     handleChangeName(event) {
         const newName = event.target.value;
         this.updateTaskLocally('name', newName);
+        this.persistField('name', newName);
     }
 
     handleChangeDescription(event) {
-        // lightning-input-rich-text also surfaces its content as event.target.value (HTML string)
+        // lightning-input-rich-text surfaces its content as event.target.value (HTML string)
         const newDescHtml = event.target.value;
         this.updateTaskLocally('taskDescription', newDescHtml);
+        this.persistField('taskDescription', newDescHtml);
     }
 
     handleChangeCompletionDate(event) {
         const newDate = event.target.value;
         this.updateTaskLocally('completionDate', newDate);
+        this.persistField('completionDate', newDate);
     }
 
     handleHandlerChange(event) {
         const newHandler = event.target.dataset.value;
         this.updateTaskLocally('taskHandler', newHandler);
+        this.persistField('taskHandler', newHandler);
     }
 
     handleStatusChange(event) {
         const newStatus = event.target.dataset.value;
         this.updateTaskLocally('taskStatus', newStatus);
+        this.persistField('taskStatus', newStatus);
     }
 
     handleMoveBack() {
@@ -144,8 +149,60 @@ export default class TaskDetails extends LightningElement {
     }
 
     applyOptimisticUpdate(updatedTask) {
-        // This is handled by parent (projectBoard.js) in mergeServerTask
-        // We just notify the parent
+        // Parent (projectBoard.js) merges authoritative server task in mergeServerTask
+        // Here we only notify parent; server sync handled in persistField()
+    }
+
+    // Persist a single field to server using Apex, debounce rapid changes for rich text
+    persistField(fieldName, value) {
+        if (!this.task || !this.task.id) {
+            return;
+        }
+
+        // Debounce map per-field to avoid flooding server for rich text typing
+        this._debouncers ??= {};
+        const key = fieldName;
+        if (this._debouncers[key]) {
+            clearTimeout(this._debouncers[key]);
+        }
+
+        const commit = () => {
+            const payload = {
+                id: this.task.id,
+                name: fieldName === 'name' ? value : this.task.name,
+                taskDescription: fieldName === 'taskDescription' ? value : this.task.taskDescription,
+                completionDate: fieldName === 'completionDate' ? value : this.task.completionDate,
+                assignedProjectId: this.task.assignedProjectId,
+                taskHandler: fieldName === 'taskHandler' ? value : this.task.taskHandler,
+                taskStatus: fieldName === 'taskStatus' ? value : this.task.taskStatus
+            };
+            
+            updateTask(payload)
+                .then((serverTask) => {
+                    // Let parent reconcile canonical server state
+                    this.dispatchEvent(
+                        new CustomEvent('taskchange', {
+                            detail: { task: serverTask },
+                            bubbles: true,
+                            composed: true
+                        })
+                    );
+                })
+                .catch((error) => {
+                    // Show toast and revert optimistic change for the field
+                    this.dispatchEvent(
+                        new ShowToastEvent({
+                            title: 'Save failed',
+                            message: (error && error.body && error.body.message) ? error.body.message : 'Unable to save task changes.',
+                            variant: 'error'
+                        })
+                    );
+                });
+        };
+
+        // Debounce 500ms for rich text, immediate for others
+        const delay = fieldName === 'taskDescription' ? 500 : 0;
+        this._debouncers[key] = setTimeout(commit, delay);
     }
 
     // Override to update variants when task changes externally
