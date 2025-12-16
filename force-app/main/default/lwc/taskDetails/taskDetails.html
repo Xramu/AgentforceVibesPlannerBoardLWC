@@ -8,7 +8,7 @@
             <template if:true={task}>
                 <!-- Task Handler Buttons -->
                 <div class="slds-m-bottom_small">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Task Handler</div>
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Maintenance Handler</div>
                     <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
                         <template for:each={handlerOptions} for:item="option">
                             <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
@@ -27,7 +27,7 @@
 
                 <!-- Name -->
                 <lightning-input
-                    label="Task Name"
+                    label="Maintenance Name"
                     value={task.name}
                     onchange={handleChangeName}
                     onblur={handleSave}
@@ -46,7 +46,7 @@
 
                 <!-- Description (Rich Text) -->
                 <lightning-input-rich-text
-                    label="Task Description"
+                    label="Maintenance Description"
                     label-visible
                     value={task.taskDescription}
                     onchange={handleChangeDescription}

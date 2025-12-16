@@ -37,6 +37,7 @@
 
 /* Selected highlight state */
 .is-selected {
-    outline: 3px solid #42f863;
-    box-shadow: 0 0 0 2px rgba(46, 132, 74, 0.15) inset;
+    border-top: 3px solid #01d336;
+    border-bottom: 3px solid #01d336;
+    border-right: 3px solid #01d336;
 }
