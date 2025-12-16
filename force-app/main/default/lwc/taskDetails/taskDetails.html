@@ -65,6 +65,15 @@
                     class="slds-m-bottom_small"
                 ></lightning-input>
 
+                <!-- Estimated Cost (Currency) -->
+                <lightning-input
+                    type="number"
+                    label={estimatedCostLabel}
+                    value={task.estimatedCost}
+                    onchange={handleChangeEstimatedCost}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+
                 <!-- Description (Rich Text) -->
                 <lightning-input-rich-text
                     label="Task Description"

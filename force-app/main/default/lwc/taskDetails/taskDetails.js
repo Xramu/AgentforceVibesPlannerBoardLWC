@@ -6,6 +6,7 @@ import updateTaskCompletionDate from '@salesforce/apex/ProjectBoardService.updat
 import updateTaskHandler from '@salesforce/apex/ProjectBoardService.updateTaskHandler';
 import updateTaskStatus from '@salesforce/apex/ProjectBoardService.updateTaskStatus';
 import updateTaskAssignedProject from '@salesforce/apex/ProjectBoardService.updateTaskAssignedProject';
+import updateTaskEstimatedCost from '@salesforce/apex/ProjectBoardService.updateTaskEstimatedCost';
 
 const HANDLER_OPTIONS = [
     { value: 'Internal', label: 'OEM', variant: 'neutral' },
@@ -101,6 +102,12 @@ export default class TaskDetails extends LightningElement {
         return !this.task || !this.task.completionDate;
     }
 
+    // Computed label for Estimated Cost including currency code
+    get estimatedCostLabel() {
+        const code = this.task && this.task.currencyIsoCode ? this.task.currencyIsoCode : '';
+        return code ? `Estimated Cost (${code})` : 'Estimated Cost';
+    }
+
     handleChangeName(event) {
         const newName = event.target.value;
         this.updateTaskLocally('name', newName);
@@ -112,6 +119,14 @@ export default class TaskDetails extends LightningElement {
         const newDescHtml = event.target.value;
         this.updateTaskLocally('taskDescription', newDescHtml);
         this.setPendingChange('taskDescription', newDescHtml);
+    }
+
+    handleChangeEstimatedCost(event) {
+        // lightning-input type="number" returns string; normalize to decimal-like string for Apex
+        const raw = event.target.value;
+        const normalized = raw === '' || raw === null || raw === undefined ? null : Number(raw);
+        this.updateTaskLocally('estimatedCost', normalized);
+        this.setPendingChange('estimatedCost', normalized);
     }
 
     handleChangeCompletionDate(event) {
@@ -257,6 +272,11 @@ export default class TaskDetails extends LightningElement {
                 case 'assignedProjectId':
                     apexMethod = updateTaskAssignedProject;
                     params = { taskId: this.task.id, assignedProjectId: value };
+                    break;
+                case 'estimatedCost':
+                    apexMethod = updateTaskEstimatedCost;
+                    // pass as Decimal-compatible; if null send null
+                    params = { taskId: this.task.id, estimatedCost: value === null ? null : value };
                     break;
                 default:
                     // If we don't recognize the field, fall back to the old behavior

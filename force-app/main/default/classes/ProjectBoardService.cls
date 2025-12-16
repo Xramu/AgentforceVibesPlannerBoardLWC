@@ -24,6 +24,8 @@ public with sharing class ProjectBoardService {
         @AuraEnabled public Id assignedProjectId;
         @AuraEnabled public String taskHandler;
         @AuraEnabled public String taskStatus;
+        @AuraEnabled public Decimal estimatedCost;
+        @AuraEnabled public String currencyIsoCode;
     }
 
     public class FetchResponse {
@@ -31,6 +33,30 @@ public with sharing class ProjectBoardService {
         @AuraEnabled public List<TaskDTO> datedTasks;
         @AuraEnabled public List<TaskDTO> undatedTasks;
         @AuraEnabled public Integer weekCount; // 52 or 53
+    }
+    
+    /**
+     * Updates a task's estimated cost field
+     */
+    @AuraEnabled
+    public static TaskDTO updateTaskEstimatedCost(Id taskId, Decimal estimatedCost) {
+        if (taskId == null) {
+            throw new AuraHandledException('Task id is required.');
+        }
+        Project_Task__c record = new Project_Task__c(Id = taskId, Estimated_Cost__c = estimatedCost);
+        try {
+            update record;
+        } catch (DmlException e) {
+            throw new AuraHandledException('Failed to update estimated cost: ' + e.getMessage());
+        }
+        Project_Task__c refreshed = [
+            SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
+            FROM Project_Task__c
+            WHERE Id = :record.Id
+            LIMIT 1
+        ];
+        return toDTO(refreshed);
     }
 
     @AuraEnabled(cacheable=true)
@@ -43,7 +69,7 @@ public with sharing class ProjectBoardService {
 
         List<Project_Task__c> dated = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Completion_Date__c != NULL
             AND Completion_Date__c >= :yearStart
@@ -53,7 +79,7 @@ public with sharing class ProjectBoardService {
 
         List<Project_Task__c> undated = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Completion_Date__c = NULL
             ORDER BY Name ASC
@@ -87,7 +113,7 @@ public with sharing class ProjectBoardService {
 
         Project_Task__c refreshed = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Id = :record.Id
             LIMIT 1
@@ -112,7 +138,7 @@ public with sharing class ProjectBoardService {
 
         Project_Task__c refreshed = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Id = :record.Id
             LIMIT 1
@@ -137,7 +163,7 @@ public with sharing class ProjectBoardService {
 
         Project_Task__c refreshed = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Id = :record.Id
             LIMIT 1
@@ -162,7 +188,7 @@ public with sharing class ProjectBoardService {
 
         Project_Task__c refreshed = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Id = :record.Id
             LIMIT 1
@@ -187,7 +213,7 @@ public with sharing class ProjectBoardService {
 
         Project_Task__c refreshed = [
             SELECT Id, Name, Task_Description__c, Completion_Date__c, Assigned_Project__c,
-                   Task_Handler__c, Task_Status__c
+                   Task_Handler__c, Task_Status__c, Estimated_Cost__c, CurrencyIsoCode
             FROM Project_Task__c
             WHERE Id = :record.Id
             LIMIT 1
@@ -299,6 +325,8 @@ public with sharing class ProjectBoardService {
         d.assignedProjectId = r.Assigned_Project__c;
         d.taskHandler = r.Task_Handler__c;
         d.taskStatus = r.Task_Status__c;
+        d.estimatedCost = r.Estimated_Cost__c;
+        d.currencyIsoCode = r.CurrencyIsoCode;
         return d;
     }
 
