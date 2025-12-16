@@ -8,9 +8,9 @@ import updateTaskStatus from '@salesforce/apex/ProjectBoardService.updateTaskSta
 import updateTaskAssignedProject from '@salesforce/apex/ProjectBoardService.updateTaskAssignedProject';
 
 const HANDLER_OPTIONS = [
-    { value: 'Internal', label: 'Internal', variant: 'neutral' },
+    { value: 'Internal', label: 'OEM', variant: 'neutral' },
     { value: 'Customer', label: 'Customer', variant: 'neutral' },
-    { value: 'Other', label: 'Other', variant: 'neutral' }
+    { value: 'Other', label: 'None', variant: 'neutral' }
 ];
 
 const STATUS_OPTIONS = [
