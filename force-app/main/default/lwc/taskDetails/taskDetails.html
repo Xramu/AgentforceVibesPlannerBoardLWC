@@ -18,31 +18,6 @@
                     </button>
                 </div>
 
-                <!-- Name -->
-                <lightning-input
-                    label="Task Name"
-                    value={task.name}
-                    onchange={handleChangeName}
-                    class="slds-m-bottom_small"
-                ></lightning-input>
-
-                <!-- Completion Date -->
-                <lightning-datepicker
-                    label="Completion Date"
-                    value={task.completionDate}
-                    onchange={handleChangeCompletionDate}
-                    class="slds-m-bottom_small"
-                ></lightning-datepicker>
-
-                <!-- Description (Rich Text) -->
-                <lightning-input-rich-text
-                    label="Task Description"
-                    label-visible
-                    value={task.taskDescription}
-                    onchange={handleChangeDescription}
-                    class="slds-m-bottom_small"
-                ></lightning-input-rich-text>
-
                 <!-- Task Handler Buttons -->
                 <div class="slds-m-bottom_small">
                     <div class="slds-text-title_bold slds-m-bottom_x-small">Task Handler</div>
@@ -62,24 +37,21 @@
                     </div>
                 </div>
 
-                <!-- Task Status Buttons -->
-                <!-- <div class="slds-m-bottom_small">
-                    <div class="slds-text-title_bold slds-m-bottom_x-small">Task Status</div>
-                    <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
-                        <template for:each={statusOptions} for:item="option">
-                            <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
-                                <button
-                                    type="button"
-                                    class={option.class}
-                                    onclick={handleStatusChange}
-                                    data-value={option.value}
-                                >
-                                    {option.label}
-                                </button>
-                            </div>
-                        </template>
-                    </div>
-                </div> -->
+                <!-- Name -->
+                <lightning-input
+                    label="Task Name"
+                    value={task.name}
+                    onchange={handleChangeName}
+                    class="slds-m-bottom_small"
+                ></lightning-input>
+
+                <!-- Completion Date -->
+                <lightning-datepicker
+                    label="Completion Date"
+                    value={task.completionDate}
+                    onchange={handleChangeCompletionDate}
+                    class="slds-m-bottom_small"
+                ></lightning-datepicker>
 
                 <!-- Navigation Buttons -->
                 <div class="slds-grid slds-gutters_x-small slds-m-top_small">
@@ -104,6 +76,34 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Description (Rich Text) -->
+                <lightning-input-rich-text
+                    label="Task Description"
+                    label-visible
+                    value={task.taskDescription}
+                    onchange={handleChangeDescription}
+                    class="slds-m-bottom_small"
+                ></lightning-input-rich-text>
+
+                <!-- Task Status Buttons -->
+                <!-- <div class="slds-m-bottom_small">
+                    <div class="slds-text-title_bold slds-m-bottom_x-small">Task Status</div>
+                    <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
+                        <template for:each={statusOptions} for:item="option">
+                            <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
+                                <button
+                                    type="button"
+                                    class={option.class}
+                                    onclick={handleStatusChange}
+                                    data-value={option.value}
+                                >
+                                    {option.label}
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+                </div> -->
             </template>
 
             <template if:false={task}>
