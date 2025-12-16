@@ -51,6 +51,8 @@ Each task is sorted into a column inside the Task Pool window based on their Tas
 Each possible task status has its own column inside the Task Pool window even if no tasks have that status.
 Fit everything neatly inside the Task Pool window but keep it's width limited to 25% at most.
 
+Tasks inside the Task Pool Window can be dragged into the Task Calendar Window to assign the week for that task. If a previous date for the task does not exist, put the task completion date on that week's Monday 12pm.
+
 Task Calendar Window:
 Located in the middle of the project management board component, a window showing a grid of boxes that correspond to each week of the year.
 The task calendar window should be the biggest window inside the project management board component, giving a quick visual representation of the year's tasks.
@@ -58,7 +60,9 @@ Each week's box should have the week number written inside them on the top left 
 All the tasks that have their Completion Date set to that year should be shown inside the box of the week the date belongs to.
 If there are multiple tasks inside a single week, stack them vertically inside the week's box.
 
-Tasks inside the weeks should be able to be dragged and dropped into other weeks, keeping their time and day of the week same. Update the date on the record whenever dragged to a different week. Update the UI to show the change immideately.
+Tasks inside the weeks are be able to be dragged and dropped into other weeks, keeping their time and day of the week same. Update the date on the record whenever dragged to a different week. Update the UI to show the change immideately.
+
+Make sure that a task can be inside only one week in the UI no matter when dragged from week to week or from the Task Pool Window to a week while previously existing in a different week.
 
 A navigation bar displaying the currently selected year is located at the top of the task calendar window.
 The year to show should be the current year by default.
