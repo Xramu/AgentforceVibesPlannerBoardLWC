@@ -13,7 +13,7 @@ Task Object:
 - `Project_Task__c` is the task object's API name.
 - `Name` field stores the task's name.
 - `Task_Description__c` field stores the task's description
-- `	Completion_Date__c` field is a Date value of the task's planned date of completion.
+- `Completion_Date__c` field is a Date value of the task's planned date of completion.
 - `Task_Handler__c` field is a picklist field that determines the handler of the task.
     - Possible task handler picklist values are `Internal`, `Customer` and `Other`
 - `Task_Status__c` field is a picklist field that determines the task's current status.
@@ -49,7 +49,7 @@ Task Pool Window:
 Located on the left side of the project management board component, a window for showing all the tasks records.
 Each task is sorted into a column inside the Task Pool window based on their Task Status value.
 Each possible task status has its own column inside the Task Pool window even if no tasks have that status.
-Fit everything neatly inside the Task Pool window but keep it's width limited to 25% at most.
+Fit everything neatly inside the Task Pool Window but keep its width limited to 25% at most.
 
 Tasks inside the Task Pool Window can be dragged into the Task Calendar Window to assign the week for that task. If a previous date for the task does not exist, put the task completion date on that week's Monday 12pm.
 
@@ -60,7 +60,7 @@ Each week's box should have the week number written inside them on the top left 
 All the tasks that have their Completion Date set to that year should be shown inside the box of the week the date belongs to.
 If there are multiple tasks inside a single week, stack them vertically inside the week's box.
 
-Tasks inside the weeks are be able to be dragged and dropped into other weeks, keeping their time and day of the week same. Update the date on the record whenever dragged to a different week. Update the UI to show the change immideately.
+Tasks inside the weeks can be dragged and dropped into other weeks, keeping their time and day of the week same. Update the date on the record whenever dragged to a different week. Update the UI to show the change immideately.
 
 Make sure that a task can be inside only one week in the UI no matter when dragged from week to week or from the Task Pool Window to a week while previously existing in a different week.
 
@@ -101,8 +101,8 @@ Any changes done inside the Task Details Window will be saved to the Task object
 
 ## User Interface Requirements
 
-Any changes to the task or project field values should be updated to the record file and be shown in real time on the project management board component.
-The project management board component should feel responsive by shwoing changes in real time.
+Any changes to the task or project field values should be updated to the record and be shown in real time on the project management board component.
+The project management board component should feel responsive by showing changes in real time.
 
 ## Extra Specifications
 
