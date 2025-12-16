@@ -5,7 +5,7 @@ import shiftTaskByWeeks from '@salesforce/apex/ProjectBoardService.shiftTaskByWe
 import setTaskDateToWeekMonday from '@salesforce/apex/ProjectBoardService.setTaskDateToWeekMonday';
 
 export default class ProjectBoard extends LightningElement {
-    @track selectedYear = new Date().getFullYear() + 1;
+    @track selectedYear = 2026;
     @track weekCount = 52;
     @track currentWeek = null;
 
