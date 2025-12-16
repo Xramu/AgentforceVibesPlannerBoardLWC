@@ -192,15 +192,47 @@ export default class ProjectBoard extends LightningElement {
 
     mergeServerTask(serverTask) {
         if (!serverTask || !serverTask.id) return;
-        // Remove from both lists, then reinsert based on completionDate
-        this.datedTasks = (this.datedTasks || []).filter((t) => t.id !== serverTask.id);
-        this.poolTasks = (this.poolTasks || []).filter((t) => t.id !== serverTask.id);
-
-        if (serverTask.completionDate) {
-            const week = this.getWeekFromDateString(serverTask.completionDate);
-            this.datedTasks = [...this.datedTasks, { ...serverTask, week }];
+        
+        // Find the task in datedTasks or poolTasks
+        let taskIndexInDated = -1;
+        let taskIndexInPool = -1;
+        
+        if (this.datedTasks && this.datedTasks.length > 0) {
+            taskIndexInDated = this.datedTasks.findIndex((t) => t.id === serverTask.id);
+        }
+        
+        if (this.poolTasks && this.poolTasks.length > 0) {
+            taskIndexInPool = this.poolTasks.findIndex((t) => t.id === serverTask.id);
+        }
+        
+        // Update the task in-place if it exists
+        if (taskIndexInDated !== -1) {
+            // Task exists in datedTasks, update it
+            const updatedTask = { ...this.datedTasks[taskIndexInDated], ...serverTask };
+            if (serverTask.completionDate) {
+                updatedTask.week = this.getWeekFromDateString(serverTask.completionDate);
+            }
+            this.datedTasks = [
+                ...this.datedTasks.slice(0, taskIndexInDated),
+                updatedTask,
+                ...this.datedTasks.slice(taskIndexInDated + 1)
+            ];
+        } else if (taskIndexInPool !== -1) {
+            // Task exists in poolTasks, update it
+            const updatedTask = { ...this.poolTasks[taskIndexInPool], ...serverTask };
+            this.poolTasks = [
+                ...this.poolTasks.slice(0, taskIndexInPool),
+                updatedTask,
+                ...this.poolTasks.slice(taskIndexInPool + 1)
+            ];
         } else {
-            this.poolTasks = [...this.poolTasks, { ...serverTask }];
+            // Task doesn't exist in either list, add it based on completionDate
+            if (serverTask.completionDate) {
+                const week = this.getWeekFromDateString(serverTask.completionDate);
+                this.datedTasks = [...this.datedTasks, { ...serverTask, week }];
+            } else {
+                this.poolTasks = [...this.poolTasks, { ...serverTask }];
+            }
         }
 
         // refresh selectedTask if it was the one
