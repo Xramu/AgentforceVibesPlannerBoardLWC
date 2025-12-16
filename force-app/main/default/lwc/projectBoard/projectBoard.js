@@ -119,12 +119,10 @@ export default class ProjectBoard extends LightningElement {
     }
 
     handleTaskSelect(event) {
-        console.log(event.detail.taskId);
         const { taskId } = event.detail || {};
         if (taskId) {
             const foundTask = this.findTaskById(taskId);
             this.selectedTask = foundTask || null;
-            console.log(this.selectedTask);
         }
     }
 

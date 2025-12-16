@@ -36,13 +36,14 @@
                     <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
                         <template for:each={handlerOptions} for:item="option">
                             <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
-                                <lightning-button
-                                    label={option.label}
-                                    variant={option.variant}
+                                <button
+                                    type="button"
+                                    class="custom-button {option.class}"
                                     onclick={handleHandlerChange}
                                     data-value={option.value}
-                                    class="handler-btn slds-button_full-width"
-                                ></lightning-button>
+                                >
+                                    {option.label}
+                                </button>
                             </div>
                         </template>
                     </div>
@@ -54,13 +55,14 @@
                     <div class="slds-grid slds-gutters_x-small slds-wrap slds-grid_vertical-align-center slds-grid_align-center">
                         <template for:each={statusOptions} for:item="option">
                             <div key={option.value} class="slds-col slds-size_1-of-3 button-container">
-                                <lightning-button
-                                    label={option.label}
-                                    variant={option.variant}
+                                <button
+                                    type="button"
+                                    class="custom-button {option.class}"
                                     onclick={handleStatusChange}
                                     data-value={option.value}
-                                    class="status-btn slds-button_full-width"
-                                ></lightning-button>
+                                >
+                                    {option.label}
+                                </button>
                             </div>
                         </template>
                     </div>
@@ -69,20 +71,24 @@
                 <!-- Navigation Buttons -->
                 <div class="slds-grid slds-gutters_x-small slds-m-top_small">
                     <div class="slds-col slds-size_1-of-2">
-                        <lightning-button
-                            label="Move Back"
-                            variant="neutral"
+                        <button
+                            type="button"
+                            class="custom-button nav-btn-back"
                             onclick={handleMoveBack}
                             disabled={noDate}
-                        ></lightning-button>
+                        >
+                            Move Back
+                        </button>
                     </div>
                     <div class="slds-col slds-size_1-of-2">
-                        <lightning-button
-                            label="Move Forward"
-                            variant="neutral"
+                        <button
+                            type="button"
+                            class="custom-button nav-btn-forward"
                             onclick={handleMoveForward}
                             disabled={noDate}
-                        ></lightning-button>
+                        >
+                            Move Forward
+                        </button>
                     </div>
                 </div>
             </template>

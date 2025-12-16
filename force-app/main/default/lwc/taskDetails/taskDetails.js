@@ -24,17 +24,64 @@ export default class TaskDetails extends LightningElement {
     @track statusOptions = STATUS_OPTIONS.map((opt) => ({ ...opt }));
 
     updateButtonVariants() {
+        console.log("Updating button variants.");
+        console.log(this.task);
         if (!this.task) return;
         // Highlight selected handler
-        this.handlerOptions = this.handlerOptions.map((opt) => ({
-            ...opt,
-            variant: opt.value === this.task.taskHandler ? 'brand' : 'neutral'
-        }));
+        this.handlerOptions = this.handlerOptions.map((opt) => {
+            const isSelected = opt.value === this.task.taskHandler;
+            let className = 'custom-button';
+            
+            // Add handler-specific class
+            if (opt.value === 'Internal') {
+                className += ' handler-btn-internal';
+            } else if (opt.value === 'Customer') {
+                className += ' handler-btn-customer';
+            } else if (opt.value === 'Other') {
+                className += ' handler-btn-other';
+            }
+            
+            // Add selected state
+            if (isSelected) {
+                className += ' slds-button_brand';
+            }
+            
+            return {
+                ...opt,
+                class: className
+            };
+        });
+        
         // Highlight selected status
-        this.statusOptions = this.statusOptions.map((opt) => ({
-            ...opt,
-            variant: opt.value === this.task.taskStatus ? 'brand' : 'neutral'
-        }));
+        this.statusOptions = this.statusOptions.map((opt) => {
+            const isSelected = opt.value === this.task.taskStatus;
+            let className = 'custom-button';
+            
+            // Add status-specific class
+            if (opt.value === 'Not Started') {
+                className += ' status-btn-not-started';
+            } else if (opt.value === 'On Track') {
+                className += ' status-btn-on-track';
+            } else if (opt.value === 'Late') {
+                className += ' status-btn-late';
+            } else if (opt.value === 'On Hold') {
+                className += ' status-btn-on-hold';
+            } else if (opt.value === 'Completed') {
+                className += ' status-btn-completed';
+            } else if (opt.value === 'Closed, not Completed') {
+                className += ' status-btn-closed-not-completed';
+            }
+            
+            // Add selected state
+            if (isSelected) {
+                className += ' slds-button_brand';
+            }
+            
+            return {
+                ...opt,
+                class: className
+            };
+        });
     }
 
     get noDate() {
@@ -97,6 +144,7 @@ export default class TaskDetails extends LightningElement {
 
     // Override to update variants when task changes externally
     updated(changedProperties) {
+        console.log("Update!");
         if (changedProperties.has('task')) {
             this.updateButtonVariants();
         }
