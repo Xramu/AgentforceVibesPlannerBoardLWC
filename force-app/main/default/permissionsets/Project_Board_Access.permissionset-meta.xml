@@ -24,13 +24,55 @@
         <modifyAllRecords>true</modifyAllRecords>
     </objectPermissions>
 
+    <fieldPermissions>
+        <field>Project__c.Project_Description__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+
     <objectPermissions>
         <object>Project_Task__c</object>
-        <allowRead>true</allowRead>
+        <allowRead>true</allowRead>''
         <allowCreate>true</allowCreate>
         <allowEdit>true</allowEdit>
         <allowDelete>true</allowDelete>
         <viewAllRecords>true</viewAllRecords>
         <modifyAllRecords>true</modifyAllRecords>
     </objectPermissions>
+
+    <fieldPermissions>
+        <field>Project_Task__c.Assigned_Project__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Project_Task__c.Completion_Date__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Project_Task__c.Estimated_Cost__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Project_Task__c.Task_Description__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Project_Task__c.Task_Handler__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Project_Task__c.Task_Status__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
 </PermissionSet>
