@@ -10,5 +10,17 @@
         <members>Task_Status_Options</members>
         <name>GlobalValueSet</name>
     </types>
+    <types>
+        <members>Project_Board</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Project_Board_App</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Project_Board_App</members>
+        <name>FlexiPage</name>
+    </types>
     <version>65.0</version>
 </Package>
