@@ -3,4 +3,34 @@
     <description>Permission set for accessing the needed items for the project board.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Project Board Access</label>
+
+    <applicationVisibilities>
+        <application>Project_Board</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+
+    <tabSettings>
+        <tab>Project_Board_App</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+
+    <objectPermissions>
+        <object>Project__c</object>
+        <allowRead>true</allowRead>
+        <allowCreate>true</allowCreate>
+        <allowEdit>true</allowEdit>
+        <allowDelete>true</allowDelete>
+        <viewAllRecords>true</viewAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
+    </objectPermissions>
+
+    <objectPermissions>
+        <object>Project_Task__c</object>
+        <allowRead>true</allowRead>
+        <allowCreate>true</allowCreate>
+        <allowEdit>true</allowEdit>
+        <allowDelete>true</allowDelete>
+        <viewAllRecords>true</viewAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
+    </objectPermissions>
 </PermissionSet>
