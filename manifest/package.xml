@@ -21,6 +21,8 @@
     </types>
     <types>
         <members>Project_Board_App</members>
+        <members>Project__c</members>
+        <members>Project_Task__c</members>
         <name>CustomTab</name>
     </types>
     <types>
