@@ -34,9 +34,5 @@
         <members>Project_Board_Access</members>
         <name>PermissionSet</name>
     </types>
-    <types>
-        <members>Auto_Assign_Project_Board_Access</members>
-        <name>UserAccessPolicy</name>
-    </types>
     <version>65.0</version>
 </Package>
