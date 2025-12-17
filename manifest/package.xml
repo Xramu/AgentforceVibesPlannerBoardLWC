@@ -5,5 +5,10 @@
         <members>Project_Task__c</members>
         <name>CustomObject</name>
     </types>
+    <types>
+        <members>Task_Handler_Options</members>
+        <members>Task_Status_Options</members>
+        <name>GlobalValueSet</name>
+    </types>
     <version>65.0</version>
 </Package>
