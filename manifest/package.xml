@@ -30,5 +30,13 @@
         <members>Project_Board_UtilityBar</members>
         <name>FlexiPage</name>
     </types>
+    <types>
+        <members>Project_Board_Access</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Auto_Assign_Project_Board_Access</members>
+        <name>UserAccessPolicy</name>
+    </types>
     <version>65.0</version>
 </Package>
