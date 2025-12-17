@@ -27,48 +27,52 @@ The titles on each section have been changed to be a fitting example for a hardw
 
 You will need to have your Visual Studio Code set up with Salesforce's extensions to deploy this project.
 
-## Deploy To Your Test Org
-*Disclaimer: This is a demo project component, you should not deploy this to your org outside sandbox/demo org!*
+# Deploy To Your Test Org
+*Disclaimer: This is a demo project component, you should not deploy this to your org outside sandbox or demo org!*
 
-### Clone The Repository To Your Local Machine
+## Clone The Repository To Your Local Machine
 Use git to clone the repository or download it and open it in Visual Studio Code.
 
-### Connect To Your Org
+## Connect To Your Org
 
 Press `Command + Shift + P` to bring up the Command Palette.
-Search the command `SFDX: Authorize an Org` and run it.
+Search for the command `SFDX: Authorize an Org` and run it.
 
-### Deploy The Source
+## Deploy The Source
 
 Right click the `force-app` folder and select `SFDX: Deploy This Source to Org`
+
 **OR**
+
 Run the command `sf project deploy start`
 
-### Assign Users To View The Project Board
+## Assign Users To View The Project Board
 
 If not open yet, open your connected org with `Command + Shift + P` and running `SFDX: Open Default Org`
 
-Click the cogwheel on the top right and go to `Setup` and search for `Permission Sets` in the Quick Find.
+Click the gear icon (cogwheel) on the top right and go to `Setup` and search for `Permission Sets` in the Quick Find.
 
 Find and click the `Project Board Access` permission set.
 
 Click `Manage Assignments` and then `Add Assignment`
 
-Select yourself and anyone needed from the list with the leftmost checkmarks.
+Select yourself and anyone else needed from the list using the checkboxes on the left.
 
 Click `Next` and then `Assign`
 
-### Deploy The Mockup Data
+## Deploy The Mockup Data
 
-Open a terminal window inside VSCode if you haven't yet.
+Open a terminal window inside VSCode if you haven't already.
 You can get a new window from `Terminal > New Terminal`
 
 Run the command `sf data import tree --plan data/import_data.json`
+
 **OR**
+
 If the command does not work, try running `sf data import tree --plan data/import_data.json --target-org <alias-of-target-org>`
 Replace `<alias-of-target-org>` with the alias you gave to your connected org.
 
-### View The Project Board
+## View The Project Board
 
 Refresh your browser and try to search for `Project Board` from the top left App Launcher.
 Click the app and you should be able to view the board with the mockup data.
