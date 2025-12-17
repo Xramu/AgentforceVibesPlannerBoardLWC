@@ -129,8 +129,7 @@
             "Estimated_Cost__c": "3000",
             "Completion_Date__c": "2025-03-25",
             "Assigned_Project__c": "@project_bus"
-        }
-        ,
+        },
         {
             "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_014"},
             "Name": "B-03 Maintenance",
@@ -140,8 +139,7 @@
             "Estimated_Cost__c": "7000",
             "Completion_Date__c": "2025-10-15",
             "Assigned_Project__c": "@project_bus"
-        }
-        ,
+        },
         {
             "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_015"},
             "Name": "B-05 Maintenance",
@@ -151,8 +149,7 @@
             "Estimated_Cost__c": "6000",
             "Completion_Date__c": "2025-02-12",
             "Assigned_Project__c": "@project_bus"
-        }
-        ,
+        },
         {
             "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_016"},
             "Name": "B-07 Maintenance",
@@ -161,6 +158,14 @@
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "2500",
             "Completion_Date__c": "2025-07-09",
+            "Assigned_Project__c": "@project_bus"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "bus_task_017"},
+            "Name": "B-13 Deployment",
+            "Task_Description__c": "Perform the deployment of the new the bus.",
+            "Task_Handler__c": "Customer",
+            "Task_Status__c": "Not Started",
             "Assigned_Project__c": "@project_bus"
         }
     ]

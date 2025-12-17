@@ -47,7 +47,7 @@
             "Task_Handler__c": "Internal",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "2500",
-            "Completion_Date__c": "2026-04-07",
+            "Completion_Date__c": "2026-03-31",
             "Assigned_Project__c": "@project_metro"
         },
         {
@@ -188,6 +188,14 @@
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "8500",
             "Completion_Date__c": "2025-07-18",
+            "Assigned_Project__c": "@project_metro"
+        },
+        {
+            "attributes": { "type": "Project_Task__c", "referenceId": "metro_task_020"},
+            "Name": "M-10 Deployment",
+            "Task_Description__c": "Perform the deployment of the new metro car unit.",
+            "Task_Handler__c": "Other",
+            "Task_Status__c": "Not Started",
             "Assigned_Project__c": "@project_metro"
         }
     ]
