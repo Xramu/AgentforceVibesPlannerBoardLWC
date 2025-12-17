@@ -27,6 +27,7 @@
     </types>
     <types>
         <members>Project_Board_App</members>
+        <members>Project_Board_UtilityBar</members>
         <name>FlexiPage</name>
     </types>
     <version>65.0</version>
