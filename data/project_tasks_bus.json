@@ -107,7 +107,7 @@
             "Task_Handler__c": "Internal",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "2500",
-            "Completion_Date__c": "2027-01-27",
+            "Completion_Date__c": "2027-02-07",
             "Assigned_Project__c": "@project_bus"
         },
         {

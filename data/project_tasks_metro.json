@@ -17,7 +17,7 @@
             "Task_Handler__c": "Customer",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "4500",
-            "Completion_Date__c": "2026-01-22",
+            "Completion_Date__c": "2026-01-15",
             "Assigned_Project__c": "@project_metro"
         },
         {
@@ -37,7 +37,7 @@
             "Task_Handler__c": "Customer",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "3900",
-            "Completion_Date__c": "2026-05-11",
+            "Completion_Date__c": "2026-05-04",
             "Assigned_Project__c": "@project_metro"
         },
         {
@@ -167,7 +167,7 @@
             "Task_Handler__c": "Internal",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "2500",
-            "Completion_Date__c": "2025-011-01",
+            "Completion_Date__c": "2025-11-01",
             "Assigned_Project__c": "@project_metro"
         },
         {
@@ -187,7 +187,7 @@
             "Task_Handler__c": "Customer",
             "Task_Status__c": "Not Started",
             "Estimated_Cost__c": "8500",
-            "Completion_Date__c": "2025-07-11",
+            "Completion_Date__c": "2025-07-18",
             "Assigned_Project__c": "@project_metro"
         }
     ]
