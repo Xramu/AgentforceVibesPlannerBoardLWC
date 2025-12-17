@@ -6,6 +6,11 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Project__c-Project Layout</members>
+        <members>Project_Task__c-Project Task Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
         <members>Task_Handler_Options</members>
         <members>Task_Status_Options</members>
         <name>GlobalValueSet</name>
