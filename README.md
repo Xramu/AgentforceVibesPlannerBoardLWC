@@ -30,49 +30,81 @@ You will need to have your Visual Studio Code set up with Salesforce's extension
 # Deploy To Your Test Org
 *Disclaimer: This is a demo project component, you should not deploy this to your org outside sandbox or demo org!*
 
-## Clone The Repository To Your Local Machine
-Use git to clone the repository or download it and open it in Visual Studio Code.
+You can choose between automatic or manual deployment, but first you will have to:
 
-## Connect To Your Org
+1. ### Clone The Repository To Your Local Machine
+    Use git to clone the repository or download it and open it in Visual Studio Code.
 
-Press `Command + Shift + P` to bring up the Command Palette.
-Search for the command `SFDX: Authorize an Org` and run it.
+2. ### Connect To Your Org
 
-## Deploy The Source
+    Press `Command + Shift + P` to bring up the Command Palette.
+    Search for the command `SFDX: Authorize an Org` and run it.
 
-Right click the `force-app` folder and select `SFDX: Deploy This Source to Org`
+# Automatic Deployment
 
-**OR**
+You can use the included Agentforce Vibes workflow called `deploy_project_board` to let Agentforce deploy this project for you.
 
-Run the command `sf project deploy start`
+1. ### Run The Automated Workflow
+    Open the Agentforce Vibes chat inside your Visual Studio Code and run the command:
 
-## Assign Users To View The Project Board
+    ```sh
+    /deploy_project_board.md 
+    ```
 
-If not open yet, open your connected org with `Command + Shift + P` and running `SFDX: Open Default Org`
+    If the workflow was successfully ran, the project board, the required permissions and its mockup data should be deployed to your org.
 
-Click the gear icon (cogwheel) on the top right and go to `Setup` and search for `Permission Sets` in the Quick Find.
+2. ### View The Project Board
+    Refresh your browser and try to search for `Project Board` from the top left App Launcher.<br>
+    Click the app and you should be able to view the board with the mockup data.
 
-Find and click the `Project Board Access` permission set.
+# Manual Deployment
 
-Click `Manage Assignments` and then `Add Assignment`
+1. ### Deploy The Source
 
-Select yourself and anyone else needed from the list using the checkboxes on the left.
+    Right click the `force-app` folder and select `SFDX: Deploy This Source to Org`
 
-Click `Next` and then `Assign`
+    **OR**
 
-## Deploy The Mockup Data
+    Run the command
+    ```sh
+    sf project deploy start
+    ```
 
-Open a terminal window inside VSCode if you haven't already.
-You can get a new window from `Terminal > New Terminal`
+2. ### Assign Users To View The Project Board
 
-Run the command `sf data import tree --plan data/import_data.json`
+    If not open yet, open your connected org with `Command + Shift + P` and running `SFDX: Open Default Org`
 
-**OR**
+    Click the gear icon (cogwheel) on the top right and go to `Setup` and search for `Permission Sets` in the Quick Find.
 
-If the command does not work, try running `sf data import tree --plan data/import_data.json --target-org <alias-of-target-org>`
-Replace `<alias-of-target-org>` with the alias you gave to your connected org.
+    Find and click the `Project Board Access` permission set.
 
-## View The Project Board
+    Click `Manage Assignments` and then `Add Assignment`
 
-Refresh your browser and try to search for `Project Board` from the top left App Launcher.
-Click the app and you should be able to view the board with the mockup data.
+    Select yourself and anyone else needed from the list using the checkboxes on the left.
+
+    Click `Next` and then `Assign`
+
+3. ### Deploy The Mockup Data
+
+    Open a terminal window inside VSCode if you haven't already.
+    You can get a new window from `Terminal > New Terminal`
+
+    Run the command
+    ```sh
+    sf data import tree --plan data/import_data.json
+    ```
+
+    **OR**
+
+    If the command does not work, try running the command:
+    
+    ```sh
+    sf data import tree --plan data/import_data.json --target-org <alias-of-target-org>
+    ```
+
+    Replace `<alias-of-target-org>` with the alias you gave to your connected org.
+
+4. ### View The Project Board
+
+    Refresh your browser and try to search for `Project Board` from the top left App Launcher.<br>
+    Click the app and you should be able to view the board with the mockup data.
