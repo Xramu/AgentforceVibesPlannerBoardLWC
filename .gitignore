@@ -46,3 +46,6 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# Ignore manual deploy only rule
+.a4drules/manual-deploy-only.md
