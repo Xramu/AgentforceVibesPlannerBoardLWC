@@ -31,7 +31,7 @@
 
 3. **Assign Permission Set To The User**
 
-    Assign the permission set named `Project Board Access` to the current user by using the tool:
+    Assign the permission set named `Project_Board_Access` to the current user by using the tool:
 
     ```sh
     assign_permission_set
