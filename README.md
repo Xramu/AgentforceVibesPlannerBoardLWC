@@ -44,6 +44,8 @@ You can choose between automatic or manual deployment, but first you will have t
 
 You can use the included Agentforce Vibes workflow called `deploy_project_board` to let Agentforce deploy this project for you.
 
+![Image showing the workflow command being highlighted inside the Agentforce Vibes chat.](https://github.com/Xramu/AgentforceVibesPlannerBoardLWC/blob/main/images/automatic_deployment_command.png)
+
 1. ### Run The Automated Workflow
     Open the Agentforce Vibes chat inside your Visual Studio Code and run the command:
 
